@@ -1,0 +1,17 @@
+{
+    "name": "carolina-mendez-colsanitas",
+    "version": "1.0.0",
+    "description": "Sistema de llamadas médicas con IA - Carolina Méndez Colsanitas",
+    "main": "index.html",
+    "scripts": {
+        "start": "npx http-server -p 8000"
+    },
+    "keywords": [
+        "medical",
+        "ai",
+        "voice",
+        "colsanitas"
+    ],
+    "author": "",
+    "license": "PRIVATE"
+}

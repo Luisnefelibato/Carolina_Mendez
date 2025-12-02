@@ -1,0 +1,24 @@
+# Variables de entorno
+.env
+.env.local
+.env.production
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Archivos de respaldo
+*.bak
+*_old.html
+*_backup.*
+
+# Logs
+*.log
+npm-debug.log*
+
+# Dependencias (si se agregan en el futuro)
+node_modules/
+
+# Archivos de Vercel
+.vercel
+

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carolina Méndez - Sistema Llamadas Médicas Colsanitas</title>
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="vendor-header">
+            <div class="vendor-avatar">🏥</div>
+            <h1 class="vendor-name">Carolina Méndez</h1>
+            <p class="vendor-title">Especialista en Confirmaciones de Citas Médicas</p>
+            <p class="vendor-tagline">Colsanitas - Departamento de Gestión de Citas</p>
+
+            <div class="service-type-buttons">
+                <button class="service-button active" onclick="changeServiceType('confirmacion')">
+                    <i class="fas fa-calendar-check"></i> Confirmación de Citas
+                </button>
+                <button class="service-button" onclick="changeServiceType('prioritaria')">
+                    <i class="fas fa-clock"></i> Cita Prioritaria
+                </button>
+                <button class="service-button" onclick="changeServiceType('urgencia')">
+                    <i class="fas fa-exclamation-triangle"></i> Urgencia Médica
+                </button>
+            </div>
+        </div>
+
+        <div class="main-tabs">
+            <button class="tab-button active" onclick="switchTab('calls')">
+                <i class="fas fa-phone"></i> Llamadas
+            </button>
+            <button class="tab-button" onclick="switchTab('search')">
+                <i class="fas fa-search"></i> Buscar Pacientes
+            </button>
+            <button class="tab-button" onclick="switchTab('crm')">
+                <i class="fas fa-database"></i> Base de Datos
+            </button>
+            <button class="tab-button" onclick="switchTab('reports')">
+                <i class="fas fa-chart-line"></i> Informes Médicos
+            </button>
+        </div>
+
+        <!-- PESTAÑA DE LLAMADAS -->
+        <div id="calls" class="tab-content active">
+            <div class="call-interface">
+                <div class="call-status waiting" id="callStatus">
+                    🏥 Carolina lista para confirmar sus citas - Departamento Colsanitas
+                    <span class="microphone-indicator" id="micIndicator"></span>
+                </div>
+
+                <div class="audio-visualizer" id="audioVisualizer">
+                    <div class="audio-wave"></div>
+                </div>
+
+                <div class="real-time-transcript" id="transcript">
+                    Sistema médico optimizado para gestión de citas Colsanitas 🏥
+                </div>
+
+                <div class="call-controls">
+                    <button class="call-button" id="callButton">
+                        <i class="fas fa-phone"></i> Iniciar Llamada
+                    </button>
+                    <button class="control-button" id="volumeButton">
+                        <i class="fas fa-volume-up"></i> Volumen: Alto
+                    </button>
+                    <button class="control-button" id="stopButton" style="display: none;">
+                        <i class="fas fa-stop"></i> Parar
+                    </button>
+                </div>
+
+                <div class="stats-display" id="statsDisplay">
+                    <div class="stat-item">
+                        <div class="stat-value" id="responseTime">~800ms</div>
+                        <div class="stat-label">Tiempo IA</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="interactions">0</div>
+                        <div class="stat-label">Interacciones</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="micStatus">OFF</div>
+                        <div class="stat-label">Micrófono</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="carolinaStatus">Lista</div>
+                        <div class="stat-label">Carolina IA</div>
+                    </div>
+                </div>
+
+                <div class="conversation-display" id="conversationDisplay">
+                    <!-- Conversaciones aparecerán aquí -->
+                </div>
+            </div>
+        </div>
+
+        <!-- PESTAÑA DE BÚSQUEDA DE PACIENTES -->
+        <div id="search" class="tab-content">
+            <div class="search-container">
+                <h3><i class="fas fa-search"></i> Búsqueda Inteligente de Pacientes</h3>
+
+                <div class="search-filters">
+                    <div class="filter-group">
+                        <label class="filter-label">Tipo de Paciente:</label>
+                        <select class="filter-select" id="patientTypeFilter">
+                            <option value="">Todos los tipos</option>
+                            <option value="pediatrico">Pediátrico</option>
+                            <option value="adulto">Adulto</option>
+                            <option value="adulto_mayor">Adulto Mayor</option>
+                            <option value="embarazada">Embarazada</option>
+                            <option value="cronica">Enfermedad Crónica</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label class="filter-label">Especialidad:</label>
+                        <select class="filter-select" id="specialtyFilter">
+                            <option value="">Todas las especialidades</option>
+                            <option value="medicina_general">Medicina General</option>
+                            <option value="cardiologia">Cardiología</option>
+                            <option value="pediatria">Pediatría</option>
+                            <option value="ginecologia">Ginecología</option>
+                            <option value="dermatologia">Dermatología</option>
+                            <option value="ortopedia">Ortopedia</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label class="filter-label">Ciudad:</label>
+                        <select class="filter-select" id="cityFilter">
+                            <option value="">Toda Colombia</option>
+                            <option value="bogota">Bogotá</option>
+                            <option value="medellin">Medellín</option>
+                            <option value="cali">Cali</option>
+                            <option value="barranquilla">Barranquilla</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label class="filter-label">Estado Cita:</label>
+                        <select class="filter-select" id="statusFilter">
+                            <option value="">Todos los estados</option>
+                            <option value="programada">Programada</option>
+                            <option value="confirmada">Confirmada</option>
+                            <option value="pendiente">Pendiente</option>
+                            <option value="cancelada">Cancelada</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button class="search-button" onclick="searchPatients()">
+                    <i class="fas fa-search"></i> Buscar Pacientes
+                </button>
+
+                <div id="patientsList" class="patients-list">
+                    <!-- Resultados aparecerán aquí -->
+                </div>
+            </div>
+        </div>
+
+        <!-- PESTAÑA CRM/BASE DE DATOS -->
+        <div id="crm" class="tab-content">
+            <div class="crm-dashboard-container">
+                <div class="crm-dashboard">
+                    <div class="crm-card">
+                        <div class="crm-title">
+                            <i class="fas fa-users"></i> Total Pacientes
+                        </div>
+                        <div class="crm-value" id="totalPatients">0</div>
+                        <div style="color: #888888;">Registrados</div>
+                    </div>
+
+                    <div class="crm-card">
+                        <div class="crm-title">
+                            <i class="fas fa-phone"></i> Llamadas Hoy
+                        </div>
+                        <div class="crm-value" id="callsToday">0</div>
+                        <div style="color: #888888;">Realizadas</div>
+                    </div>
+
+                    <div class="crm-card">
+                        <div class="crm-title">
+                            <i class="fas fa-calendar-check"></i> Confirmaciones
+                        </div>
+                        <div class="crm-value" id="confirmationRate">0%</div>
+                        <div style="color: #888888;">Exitosas</div>
+                    </div>
+
+                    <div class="crm-card">
+                        <div class="crm-title">
+                            <i class="fas fa-clock"></i> Citas Mes
+                        </div>
+                        <div class="crm-value" id="appointmentsMonth">0</div>
+                        <div style="color: #888888;">Gestionadas</div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 30px;">
+                    <h3><i class="fas fa-database"></i> Base de Datos Pacientes</h3>
+
+                    <div style="margin-bottom: 20px;">
+                        <input type="text" class="filter-input" placeholder="Buscar paciente..." id="searchPatient"
+                            style="width: 300px; margin-right: 10px;">
+                        <button class="search-button" onclick="filterPatients()">
+                            <i class="fas fa-filter"></i> Filtrar
+                        </button>
+                        <button class="search-button" onclick="exportData()" style="margin-left: 10px;">
+                            <i class="fas fa-download"></i> Exportar
+                        </button>
+                    </div>
+
+                    <div id="crmPatientsList" class="patients-list">
+                        <!-- Base de datos de pacientes aparecerá aquí -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PESTAÑA DE INFORMES -->
+        <div id="reports" class="tab-content">
+            <div class="reports-container">
+                <h3><i class="fas fa-chart-bar"></i> Analytics e Informes Médicos</h3>
+
+                <div style="margin-bottom: 20px;">
+                    <button class="search-button" onclick="generateReport()">
+                        <i class="fas fa-plus"></i> Generar Informe
+                    </button>
+                    <button class="search-button" onclick="exportReport()" style="margin-left: 10px;">
+                        <i class="fas fa-file-alt"></i> Exportar
+                    </button>
+                    <button class="search-button" onclick="clearAllReports()" style="margin-left: 10px;">
+                        <i class="fas fa-trash"></i> Limpiar Todo
+                    </button>
+                </div>
+
+                <div id="reportDisplay">
+                    <div style="text-align: center; color: #888888; padding: 40px;">
+                        <i class="fas fa-clipboard" style="font-size: 3rem; margin-bottom: 20px; color: #0066cc;"></i>
+                        <h3>No hay informes generados aún</h3>
+                        <p>Realiza una llamada y genera un informe automático médico</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts: config primero, luego el script principal -->
+    <script src="config.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
+
