@@ -1,4 +1,4 @@
-﻿// === SISTEMA IA CAROLINA COLSANITAS ===
+// === SISTEMA IA CAROLINA COLSANITAS ===
 class CarolinaColsanitasSistema {
 
     constructor() {
