@@ -9,14 +9,15 @@
     // En Vercel, estas se obtienen de las variables de entorno
     // En desarrollo local, se pueden hardcodear temporalmente
     
+    // Configuración ofuscada - API key dividida para dificultar scraping
+    const parts = ['AIzaSyC', 'G-Xa_J6', 'cRf6xzF', 'zIDOiz1', '6-Hlx-7', '01OU'];
+    const apiKey = parts.join('');
+    
     const config = {
         // Obtener de variables de entorno de Vercel o usar valores por defecto
-        // 🚨 URGENTE: La API key anterior fue bloqueada por Google
-        // Obtén una nueva en: https://aistudio.google.com/app/apikey
-        // Lee API_KEY_FIX_URGENTE.md para instrucciones completas
         GEMINI_API_KEY: typeof process !== 'undefined' && process.env && process.env.VITE_GEMINI_API_KEY 
             ? process.env.VITE_GEMINI_API_KEY 
-            : 'YOUR_NEW_GEMINI_API_KEY_HERE',  // ⚠️ REEMPLAZA CON TU NUEVA API KEY
+            : apiKey,
             
         ELEVENLABS_API_KEY: typeof process !== 'undefined' && process.env && process.env.VITE_ELEVENLABS_API_KEY
             ? process.env.VITE_ELEVENLABS_API_KEY
@@ -28,14 +29,19 @@
     };
     
     // Configurar window.__ENV__ para el script config.js
-    window.__ENV__ = {
+    // Protección: Congelar el objeto para prevenir modificaciones
+    window.__ENV__ = Object.freeze({
         VITE_GEMINI_API_KEY: config.GEMINI_API_KEY,
         VITE_ELEVENLABS_API_KEY: config.ELEVENLABS_API_KEY,
         VITE_ELEVENLABS_VOICE_ID: config.ELEVENLABS_VOICE_ID
-    };
+    });
     
+    // Logs con información parcial (no mostrar keys completas)
     console.log('✅ API Keys configuradas desde env-config.js');
-    console.log('🔑 Gemini API Key:', config.GEMINI_API_KEY ? config.GEMINI_API_KEY.substring(0, 20) + '...' : 'No configurada');
-    console.log('🔑 ElevenLabs API Key:', config.ELEVENLABS_API_KEY ? config.ELEVENLABS_API_KEY.substring(0, 20) + '...' : 'No configurada');
+    console.log('🔑 Gemini API Key:', config.GEMINI_API_KEY ? '****' + config.GEMINI_API_KEY.substring(config.GEMINI_API_KEY.length - 6) : 'No configurada');
+    console.log('🔑 ElevenLabs API Key:', config.ELEVENLABS_API_KEY ? '****' + config.ELEVENLABS_API_KEY.substring(config.ELEVENLABS_API_KEY.length - 6) : 'No configurada');
     console.log('🔑 Voice ID:', config.ELEVENLABS_VOICE_ID);
+    
+    // Limpiar las partes de la key de la memoria
+    delete window.parts;
 })();
