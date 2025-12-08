@@ -26,7 +26,7 @@ class CarolinaColsanitasSistema {
         this.silenceTimer = null;
         this.microphoneTimer = null;
 
-        // Datos de conversaciÃ³n y CRM
+        // Datos de conversación y CRM
         this.finalTranscript = '';
         this.interimTranscript = '';
         this.conversationHistory = [];
@@ -34,7 +34,7 @@ class CarolinaColsanitasSistema {
         this.patientName = null;
         this.currentPatient = null;
 
-        // Base de datos mÃ©dica
+        // Base de datos médica
         this.patientsDatabase = [];
         this.callsDatabase = [];
         this.reportsDatabase = [];
@@ -58,7 +58,7 @@ class CarolinaColsanitasSistema {
         this.audioVisualizer = document.getElementById('audioVisualizer');
         this.micIndicator = document.getElementById('micIndicator');
 
-        // EstadÃ­sticas
+        // Estadísticas
         this.responseTimeEl = document.getElementById('responseTime');
         this.interactionsEl = document.getElementById('interactions');
         this.micStatusEl = document.getElementById('micStatus');
@@ -72,24 +72,24 @@ class CarolinaColsanitasSistema {
     }
 
     async initializeSystem() {
-        console.log('ðŸš€ Inicializando Carolina IA System...');
+        console.log('🚀 Inicializando Carolina IA System...');
         this.setupEventListeners();
         await this.initializeVoiceRecognition();
         this.updateCallStatus(this.getWelcomeMessage(), 'waiting');
         this.updateMicrophoneStatus(false);
         this.updateCRMDashboard();
 
-        // Intentar listar modelos disponibles para diagnÃ³stico
+        // Intentar listar modelos disponibles para diagnóstico
         setTimeout(async () => {
             const models = await this.listAvailableModels();
             if (models.length > 0) {
-                console.log('âœ… Modelos disponibles para esta API key:', models.map(m => m.name).join(', '));
+                console.log('⚠Modelos disponibles para esta API key:', models.map(m => m.name).join(', '));
             } else {
-                console.warn('âš ï¸ No se pudieron listar modelos. Verifica que la API key sea vÃ¡lida.');
+                console.warn('✅  No se pudieron listar modelos. Verifica que la API key sea válida.');
             }
         }, 1000);
 
-        console.log('âœ… Sistema Carolina inicializado correctamente');
+        console.log('⚠Sistema Carolina inicializado correctamente');
     }
 
     // === BASE DE DATOS SIMULADA ===
@@ -97,36 +97,36 @@ class CarolinaColsanitasSistema {
         // Doctores por especialidad
         this.doctorsDatabase = {
             'odontologia': [
-                { name: 'Dr. Carlos RamÃ­rez', clinic: 'ClÃ­nica Colsanitas Calle 127', phone: '601-345-6789' },
-                { name: 'Dra. MarÃ­a GonzÃ¡lez', clinic: 'ClÃ­nica Colsanitas Centro', phone: '601-234-5678' },
-                { name: 'Dr. AndrÃ©s MartÃ­nez', clinic: 'ClÃ­nica Colsanitas Norte', phone: '601-456-7890' },
-                { name: 'Dra. Laura SÃ¡nchez', clinic: 'ClÃ­nica Colsanitas Sur', phone: '601-567-8901' }
+                { name: 'Dr. Carlos Ramírez', clinic: 'Clínica Colsanitas Calle 127', phone: '601-345-6789' },
+                { name: 'Dra. María González', clinic: 'Clínica Colsanitas Centro', phone: '601-234-5678' },
+                { name: 'Dr. Andrés Martínez', clinic: 'Clínica Colsanitas Norte', phone: '601-456-7890' },
+                { name: 'Dra. Laura Sánchez', clinic: 'Clínica Colsanitas Sur', phone: '601-567-8901' }
             ],
             'cardiologia': [
-                { name: 'Dr. Roberto FernÃ¡ndez', clinic: 'ClÃ­nica Colsanitas Calle 127', phone: '601-345-6789' },
-                { name: 'Dra. Ana Torres', clinic: 'ClÃ­nica Colsanitas Centro', phone: '601-234-5678' },
-                { name: 'Dr. Juan PÃ©rez', clinic: 'ClÃ­nica Colsanitas Norte', phone: '601-456-7890' }
+                { name: 'Dr. Roberto Fernández', clinic: 'Clínica Colsanitas Calle 127', phone: '601-345-6789' },
+                { name: 'Dra. Ana Torres', clinic: 'Clínica Colsanitas Centro', phone: '601-234-5678' },
+                { name: 'Dr. Juan Pérez', clinic: 'Clínica Colsanitas Norte', phone: '601-456-7890' }
             ],
             'medicina_general': [
-                { name: 'Dr. Pedro LÃ³pez', clinic: 'ClÃ­nica Colsanitas Calle 127', phone: '601-345-6789' },
-                { name: 'Dra. Carmen DÃ­az', clinic: 'ClÃ­nica Colsanitas Centro', phone: '601-234-5678' },
-                { name: 'Dr. Miguel RodrÃ­guez', clinic: 'ClÃ­nica Colsanitas Norte', phone: '601-456-7890' }
+                { name: 'Dr. Pedro López', clinic: 'Clínica Colsanitas Calle 127', phone: '601-345-6789' },
+                { name: 'Dra. Carmen Díaz', clinic: 'Clínica Colsanitas Centro', phone: '601-234-5678' },
+                { name: 'Dr. Miguel Rodríguez', clinic: 'Clínica Colsanitas Norte', phone: '601-456-7890' }
             ],
             'pediatria': [
-                { name: 'Dra. SofÃ­a Morales', clinic: 'ClÃ­nica Colsanitas Calle 127', phone: '601-345-6789' },
-                { name: 'Dr. Diego Herrera', clinic: 'ClÃ­nica Colsanitas Centro', phone: '601-234-5678' }
+                { name: 'Dra. Sofía Morales', clinic: 'Clínica Colsanitas Calle 127', phone: '601-345-6789' },
+                { name: 'Dr. Diego Herrera', clinic: 'Clínica Colsanitas Centro', phone: '601-234-5678' }
             ],
             'ginecologia': [
-                { name: 'Dra. Patricia Vega', clinic: 'ClÃ­nica Colsanitas Calle 127', phone: '601-345-6789' },
-                { name: 'Dra. Isabel Castro', clinic: 'ClÃ­nica Colsanitas Centro', phone: '601-234-5678' }
+                { name: 'Dra. Patricia Vega', clinic: 'Clínica Colsanitas Calle 127', phone: '601-345-6789' },
+                { name: 'Dra. Isabel Castro', clinic: 'Clínica Colsanitas Centro', phone: '601-234-5678' }
             ],
             'dermatologia': [
-                { name: 'Dr. Fernando Ruiz', clinic: 'ClÃ­nica Colsanitas Calle 127', phone: '601-345-6789' },
-                { name: 'Dra. Claudia Moreno', clinic: 'ClÃ­nica Colsanitas Norte', phone: '601-456-7890' }
+                { name: 'Dr. Fernando Ruiz', clinic: 'Clínica Colsanitas Calle 127', phone: '601-345-6789' },
+                { name: 'Dra. Claudia Moreno', clinic: 'Clínica Colsanitas Norte', phone: '601-456-7890' }
             ],
             'ortopedia': [
-                { name: 'Dr. Jorge Silva', clinic: 'ClÃ­nica Colsanitas Calle 127', phone: '601-345-6789' },
-                { name: 'Dr. Ricardo Vargas', clinic: 'ClÃ­nica Colsanitas Centro', phone: '601-234-5678' }
+                { name: 'Dr. Jorge Silva', clinic: 'Clínica Colsanitas Calle 127', phone: '601-345-6789' },
+                { name: 'Dr. Ricardo Vargas', clinic: 'Clínica Colsanitas Centro', phone: '601-234-5678' }
             ]
         };
 
@@ -137,41 +137,41 @@ class CarolinaColsanitasSistema {
             '4:00 PM', '4:30 PM', '5:00 PM', '5:30 PM'
         ];
 
-        // Horarios prioritarios (mÃ¡s tempranos o flexibles)
+        // Horarios prioritarios (más tempranos o flexibles)
         this.priorityTimes = [
             '7:00 AM', '7:30 AM', '8:00 AM', '8:30 AM', '9:00 AM', '9:30 AM',
             '10:00 AM', '10:30 AM', '11:00 AM', '1:00 PM', '1:30 PM', '2:00 PM'
         ];
 
-        // ClÃ­nicas de urgencias con informaciÃ³n completa
+        // Clínicas de urgencias con información completa
         this.emergencyClinics = [
             {
-                name: 'ClÃ­nica Colsanitas Calle 127',
-                address: 'Calle 127 # 7-32, BogotÃ¡',
+                name: 'Clínica Colsanitas Calle 127',
+                address: 'Calle 127 # 7-32, Bogotá',
                 phone: '601-345-6789',
                 emergencyPhone: '601-345-6790',
                 open24h: true,
                 specialties: ['Todas las especialidades']
             },
             {
-                name: 'ClÃ­nica Colsanitas Centro',
-                address: 'Carrera 7 # 32-16, BogotÃ¡',
+                name: 'Clínica Colsanitas Centro',
+                address: 'Carrera 7 # 32-16, Bogotá',
                 phone: '601-234-5678',
                 emergencyPhone: '601-234-5679',
                 open24h: true,
                 specialties: ['Todas las especialidades']
             },
             {
-                name: 'ClÃ­nica Colsanitas Norte',
-                address: 'Avenida 68 # 49-47, BogotÃ¡',
+                name: 'Clínica Colsanitas Norte',
+                address: 'Avenida 68 # 49-47, Bogotá',
                 phone: '601-456-7890',
                 emergencyPhone: '601-456-7891',
                 open24h: true,
                 specialties: ['Todas las especialidades']
             },
             {
-                name: 'ClÃ­nica Colsanitas Sur',
-                address: 'Calle 13 Sur # 4-47, BogotÃ¡',
+                name: 'Clínica Colsanitas Sur',
+                address: 'Calle 13 Sur # 4-47, Bogotá',
                 phone: '601-567-8901',
                 emergencyPhone: '601-567-8902',
                 open24h: true,
@@ -180,7 +180,7 @@ class CarolinaColsanitasSistema {
         ];
     }
 
-    // === SIMULACIÃ“N DE BÃšSQUEDA DE CITA ===
+    // === SIMULACIÃN DE BÃSQUEDA DE CITA ===
     simulateAppointmentSearch(patientName, documentNumber, specialty, dayOfWeek, serviceType = 'confirmacion') {
         // Normalizar especialidad
         const normalizedSpecialty = this.normalizeSpecialty(specialty);
@@ -194,7 +194,7 @@ class CarolinaColsanitasSistema {
         let appointmentDate, time, status, appointmentId;
 
         if (serviceType === 'urgencia') {
-            // Para urgencias: fecha y hora inmediatas (hoy o maÃ±ana temprano)
+            // Para urgencias: fecha y hora inmediatas (hoy o mañana temprano)
             const today = new Date();
             const tomorrow = new Date(today);
             tomorrow.setDate(today.getDate() + 1);
@@ -205,7 +205,7 @@ class CarolinaColsanitasSistema {
             status = 'urgencia activada';
             appointmentId = `URG-${new Date().getFullYear()}-${String(Math.floor(Math.random() * 999) + 1).padStart(3, '0')}`;
         } else if (serviceType === 'prioritaria') {
-            // Para prioritarias: maÃ±ana o pasado maÃ±ana
+            // Para prioritarias: mañana o pasado mañana
             const today = new Date();
             const nextDay = new Date(today);
             nextDay.setDate(today.getDate() + (Math.random() > 0.5 ? 1 : 2));
@@ -215,7 +215,7 @@ class CarolinaColsanitasSistema {
             status = 'prioritaria confirmada';
             appointmentId = `PRI-${Date.now().toString().slice(-6)}`;
         } else {
-            // ConfirmaciÃ³n normal: calcular fecha del prÃ³ximo dÃ­a de la semana solicitado
+            // Confirmación normal: calcular fecha del próximo día de la semana solicitado
             appointmentDate = this.getNextDayOfWeek(dayOfWeek);
             time = this.availableTimes[Math.floor(Math.random() * this.availableTimes.length)];
             status = 'confirmada';
@@ -236,18 +236,18 @@ class CarolinaColsanitasSistema {
         };
     }
 
-    // === SIMULACIÃ“N DE URGENCIA MÃ‰DICA ===
+    // === SIMULACIÃN DE URGENCIA MÃDICA ===
     simulateEmergencyResponse(patientName, documentNumber, specialty, location = null) {
-        // Seleccionar clÃ­nica de urgencias mÃ¡s cercana o aleatoria
+        // Seleccionar clínica de urgencias más cercana o aleatoria
         let clinic;
         if (location) {
-            // Si hay ubicaciÃ³n, seleccionar la mÃ¡s cercana (simulado)
+            // Si hay ubicación, seleccionar la más cercana (simulado)
             clinic = this.emergencyClinics[Math.floor(Math.random() * this.emergencyClinics.length)];
         } else {
             clinic = this.emergencyClinics[Math.floor(Math.random() * this.emergencyClinics.length)];
         }
 
-        // Generar cÃ³digo de urgencia Ãºnico
+        // Generar código de urgencia único
         const emergencyCode = `URG-${new Date().getFullYear()}-${String(Math.floor(Math.random() * 9999) + 1).padStart(4, '0')}`;
 
         // Fecha y hora inmediatas
@@ -264,14 +264,14 @@ class CarolinaColsanitasSistema {
             emergencyCode: emergencyCode,
             arrivalTime: this.formatDateTime(arrivalTime),
             status: 'urgencia activada',
-            instructions: 'DirÃ­jase inmediatamente. El personal mÃ©dico ya estÃ¡ informado de su llegada.'
+            instructions: 'Diríjase inmediatamente. El personal médico ya está informado de su llegada.'
         };
     }
 
     formatDate(date) {
         const months = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
             'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
-        const dayNames = ['domingo', 'lunes', 'martes', 'miÃ©rcoles', 'jueves', 'viernes', 'sÃ¡bado'];
+        const dayNames = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
 
         const dayName = dayNames[date.getDay()];
         const day = date.getDate();
@@ -298,21 +298,21 @@ class CarolinaColsanitasSistema {
     normalizeSpecialty(specialty) {
         const specialtyMap = {
             'odontologia': 'odontologia',
-            'odontÃ³logo': 'odontologia',
+            'odontólogo': 'odontologia',
             'odontologo': 'odontologia',
             'dental': 'odontologia',
             'diente': 'odontologia',
             'cardiologia': 'cardiologia',
-            'cardiÃ³logo': 'cardiologia',
-            'corazÃ³n': 'cardiologia',
+            'cardiólogo': 'cardiologia',
+            'corazón': 'cardiologia',
             'pediatria': 'pediatria',
             'pediatra': 'pediatria',
-            'niÃ±o': 'pediatria',
+            'niño': 'pediatria',
             'ginecologia': 'ginecologia',
-            'ginecÃ³logo': 'ginecologia',
+            'ginecólogo': 'ginecologia',
             'ginecologo': 'ginecologia',
             'dermatologia': 'dermatologia',
-            'dermatÃ³logo': 'dermatologia',
+            'dermatólogo': 'dermatologia',
             'piel': 'dermatologia',
             'ortopedia': 'ortopedia',
             'ortopedista': 'ortopedia',
@@ -330,26 +330,26 @@ class CarolinaColsanitasSistema {
 
     getNextDayOfWeek(dayOfWeek) {
         const days = {
-            'lunes': 1, 'martes': 2, 'miÃ©rcoles': 3, 'miercoles': 3,
-            'jueves': 4, 'viernes': 5, 'sÃ¡bado': 6, 'sabado': 6, 'domingo': 0
+            'lunes': 1, 'martes': 2, 'miércoles': 3, 'miercoles': 3,
+            'jueves': 4, 'viernes': 5, 'sábado': 6, 'sabado': 6, 'domingo': 0
         };
 
         const today = new Date();
         const currentDay = today.getDay();
-        const targetDay = days[dayOfWeek.toLowerCase()] || 6; // Default: sÃ¡bado
+        const targetDay = days[dayOfWeek.toLowerCase()] || 6; // Default: sábado
 
         let daysUntilTarget = targetDay - currentDay;
         if (daysUntilTarget <= 0) {
-            daysUntilTarget += 7; // Si ya pasÃ³, buscar el prÃ³ximo
+            daysUntilTarget += 7; // Si ya pasó, buscar el próximo
         }
 
         const appointmentDate = new Date(today);
         appointmentDate.setDate(today.getDate() + daysUntilTarget);
 
-        // Formatear fecha en espaÃ±ol
+        // Formatear fecha en español
         const months = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
             'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
-        const dayNames = ['domingo', 'lunes', 'martes', 'miÃ©rcoles', 'jueves', 'viernes', 'sÃ¡bado'];
+        const dayNames = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
 
         const dayName = dayNames[appointmentDate.getDay()];
         const day = appointmentDate.getDate();
@@ -362,36 +362,36 @@ class CarolinaColsanitasSistema {
     getWelcomeMessage() {
         switch (this.currentServiceType) {
             case 'confirmacion':
-                return 'ðŸ¥ Carolina lista para confirmar sus citas - Departamento ColsÃ¡nitas';
+                return '🏥 Carolina lista para confirmar sus citas - Departamento Colsánitas';
             case 'prioritaria':
-                return 'âš¡ AtenciÃ³n Prioritaria activada - Carolina gestionando citas urgentes';
+                return '⚡ Atención Prioritaria activada - Carolina gestionando citas urgentes';
             case 'urgencia':
-                return 'ðŸš¨ Protocolo de Urgencias - Carolina coordinando atenciÃ³n inmediata';
+                return '🚨 Protocolo de Urgencias - Carolina coordinando atención inmediata';
             default:
-                return 'ðŸ¥ Carolina lista para confirmar sus citas - Departamento ColsÃ¡nitas';
+                return '🏥 Carolina lista para confirmar sus citas - Departamento Colsánitas';
         }
     }
 
     getInitialGreeting() {
         switch (this.currentServiceType) {
             case 'confirmacion':
-                return 'Buenos dÃ­as, habla Carolina MÃ©ndez del departamento de confirmaciones de ColsÃ¡nitas. Â¿En quÃ© puedo ayudarle con su cita mÃ©dica?';
+                return 'Buenos días, habla Carolina Méndez del departamento de confirmaciones de Colsánitas. ¿En qué puedo ayudarle con su cita médica?';
             case 'prioritaria':
-                return 'Buenos dÃ­as, habla Carolina MÃ©ndez del departamento de atenciÃ³n prioritaria de ColsÃ¡nitas. Entiendo que necesita una cita con urgencia. Por favor, cuÃ©nteme quÃ© especialidad necesita y su situaciÃ³n para coordinarle la atenciÃ³n lo antes posible.';
+                return 'Buenos días, habla Carolina Méndez del departamento de atención prioritaria de Colsánitas. Entiendo que necesita una cita con urgencia. Por favor, cuénteme qué especialidad necesita y su situación para coordinarle la atención lo antes posible.';
             case 'urgencia':
-                return 'Buenos dÃ­as, habla Carolina MÃ©ndez, protocolo de urgencias de ColsÃ¡nitas. Estoy aquÃ­ para coordinar su atenciÃ³n mÃ©dica inmediata. Por favor, indÃ­queme su nombre, nÃºmero de documento y su ubicaciÃ³n actual para dirigirle al centro mÃ¡s cercano.';
+                return 'Buenos días, habla Carolina Méndez, protocolo de urgencias de Colsánitas. Estoy aquí para coordinar su atención médica inmediata. Por favor, indíqueme su nombre, número de documento y su ubicación actual para dirigirle al centro más cercano.';
             default:
-                return 'Buenos dÃ­as, habla Carolina MÃ©ndez del departamento de confirmaciones de ColsÃ¡nitas. Â¿En quÃ© puedo ayudarle con su cita mÃ©dica?';
+                return 'Buenos días, habla Carolina Méndez del departamento de confirmaciones de Colsánitas. ¿En qué puedo ayudarle con su cita médica?';
         }
     }
 
-    // === CONVERSIÃ“N PERFECTA DE NÃšMEROS A ESPAÃ‘OL ===
+    // === CONVERSIÃN PERFECTA DE NÃMEROS A ESPAÃOL ===
     numberToSpanishWords(number) {
         if (number === 0) return 'cero';
         if (number === 100) return 'cien';
 
         const ones = ['', 'un', 'dos', 'tres', 'cuatro', 'cinco', 'seis', 'siete', 'ocho', 'nueve'];
-        const teens = ['diez', 'once', 'doce', 'trece', 'catorce', 'quince', 'diecisÃ©is', 'diecisiete', 'dieciocho', 'diecinueve'];
+        const teens = ['diez', 'once', 'doce', 'trece', 'catorce', 'quince', 'dieciséis', 'diecisiete', 'dieciocho', 'diecinueve'];
         const tens = ['', '', 'veinte', 'treinta', 'cuarenta', 'cincuenta', 'sesenta', 'setenta', 'ochenta', 'noventa'];
         const hundreds = ['', 'cien', 'doscientos', 'trescientos', 'cuatrocientos', 'quinientos', 'seiscientos', 'setecientos', 'ochocientos', 'novecientos'];
 
@@ -430,21 +430,21 @@ class CarolinaColsanitasSistema {
         // Millones
         const millions = Math.floor(number / 1000000);
         const remainder = number % 1000000;
-        const millionsText = millions === 1 ? 'un millÃ³n' : this.numberToSpanishWords(millions) + ' millones';
+        const millionsText = millions === 1 ? 'un millón' : this.numberToSpanishWords(millions) + ' millones';
         return millionsText + (remainder > 0 ? ' ' + this.numberToSpanishWords(remainder) : '');
     }
 
-    // === OPTIMIZACIÃ“N PARA ELEVENLABS ===
+    // === OPTIMIZACIÃN PARA ELEVENLABS ===
     optimizeForElevenLabs(text) {
         let optimized = text;
 
-        // Reemplazar abreviaciones mÃ©dicas por formas completas
+        // Reemplazar abreviaciones médicas por formas completas
         optimized = optimized.replace(/\bDr\.\s+/g, 'doctor ');
         optimized = optimized.replace(/\bDra\.\s+/g, 'doctora ');
         optimized = optimized.replace(/\bDr\s+/g, 'doctor ');
         optimized = optimized.replace(/\bDra\s+/g, 'doctora ');
 
-        // Convertir horas en formato 12h AM/PM a palabras en espaÃ±ol
+        // Convertir horas en formato 12h AM/PM a palabras en español
         optimized = optimized.replace(/(\d{1,2}):(\d{2})\s*(AM|PM|am|pm)/g, (match, hour, minutes, period) => {
             const h = parseInt(hour);
             const m = parseInt(minutes);
@@ -464,7 +464,7 @@ class CarolinaColsanitasSistema {
                 minutesText = m === 30 ? ' y media' : ` y ${this.numberToSpanishWords(m)}`;
             }
 
-            const timeOfDay = isPM ? (h >= 1 && h < 7 ? 'de la tarde' : 'de la noche') : 'de la maÃ±ana';
+            const timeOfDay = isPM ? (h >= 1 && h < 7 ? 'de la tarde' : 'de la noche') : 'de la mañana';
 
             return `${hourText}${minutesText} ${timeOfDay}`;
         });
@@ -480,10 +480,10 @@ class CarolinaColsanitasSistema {
                 timeOfDay = 'de la noche';
             } else if (h < 12) {
                 hourText = this.numberToSpanishWords(h);
-                timeOfDay = 'de la maÃ±ana';
+                timeOfDay = 'de la mañana';
             } else if (h === 12) {
                 hourText = 'doce';
-                timeOfDay = 'del mediodÃ­a';
+                timeOfDay = 'del mediodía';
             } else if (h < 20) {
                 hourText = this.numberToSpanishWords(h);
                 timeOfDay = 'de la tarde';
@@ -505,12 +505,12 @@ class CarolinaColsanitasSistema {
             return `el ${this.numberToSpanishWords(parseInt(day))} del ${this.numberToSpanishWords(parseInt(month))} del ${this.numberToSpanishWords(parseInt(year))}`;
         });
 
-        // NÃºmeros de cÃ©dula y telÃ©fonos (decirlos dÃ­gito por dÃ­gito)
+        // Números de cédula y teléfonos (decirlos dígito por dígito)
         optimized = optimized.replace(/(\d{8,11})/g, (match, number) => {
             return number.split('').map(d => this.numberToSpanishWords(parseInt(d))).join(' ');
         });
 
-        // CÃ³digos mÃ©dicos (decirlos letra por letra y nÃºmero por nÃºmero)
+        // Códigos médicos (decirlos letra por letra y número por número)
         optimized = optimized.replace(/([A-Z]{2,}-\d+)/g, (match) => {
             return match.split('').map(char => {
                 if (/[A-Z]/.test(char)) {
@@ -548,30 +548,30 @@ class CarolinaColsanitasSistema {
         });
 
         // Reemplazar otras abreviaciones comunes
-        optimized = optimized.replace(/\betc\./g, 'etcÃ©tera');
+        optimized = optimized.replace(/\betc\./g, 'etcétera');
         optimized = optimized.replace(/\bvs\./g, 'versus');
-        optimized = optimized.replace(/\bSr\./g, 'seÃ±or');
-        optimized = optimized.replace(/\bSra\./g, 'seÃ±ora');
-        optimized = optimized.replace(/\bSrta\./g, 'seÃ±orita');
+        optimized = optimized.replace(/\bSr\./g, 'señor');
+        optimized = optimized.replace(/\bSra\./g, 'señora');
+        optimized = optimized.replace(/\bSrta\./g, 'señorita');
 
-        // Convertir signos de puntuaciÃ³n a palabras explÃ­citas
+        // Convertir signos de puntuación a palabras explícitas
         // Puntos y comas (solo en contextos donde sea necesario)
         optimized = optimized.replace(/\.\s+/g, ' punto ');
         optimized = optimized.replace(/,\s+/g, ' coma ');
         optimized = optimized.replace(/;\s+/g, ' punto y coma ');
         optimized = optimized.replace(/:\s+/g, ' dos puntos ');
 
-        // Signos de interrogaciÃ³n y exclamaciÃ³n
-        optimized = optimized.replace(/\?/g, ' signo de interrogaciÃ³n ');
-        optimized = optimized.replace(/!/g, ' signo de exclamaciÃ³n ');
+        // Signos de interrogación y exclamación
+        optimized = optimized.replace(/\?/g, ' signo de interrogación ');
+        optimized = optimized.replace(/!/g, ' signo de exclamación ');
 
         // Guiones y rayas
         optimized = optimized.replace(/-\s+/g, ' guion ');
         optimized = optimized.replace(/\s+-/g, ' guion ');
-        optimized = optimized.replace(/â€”/g, ' raya ');
+        optimized = optimized.replace(/✅/g, ' raya ');
 
-        // ParÃ©ntesis (convertir contenido)
-        optimized = optimized.replace(/\(([^)]+)\)/g, ' entre parÃ©ntesis $1 cierra parÃ©ntesis ');
+        // Paréntesis (convertir contenido)
+        optimized = optimized.replace(/\(([^)]+)\)/g, ' entre paréntesis $1 cierra paréntesis ');
 
         // Corchetes
         optimized = optimized.replace(/\[([^\]]+)\]/g, ' entre corchetes $1 cierra corchetes ');
@@ -583,11 +583,11 @@ class CarolinaColsanitasSistema {
         // Porcentajes
         optimized = optimized.replace(/(\d+)%/g, '$1 por ciento');
 
-        // SÃ­mbolos matemÃ¡ticos comunes
-        optimized = optimized.replace(/\+/g, ' mÃ¡s ');
+        // Símbolos matemáticos comunes
+        optimized = optimized.replace(/\+/g, ' más ');
         optimized = optimized.replace(/=/g, ' igual ');
 
-        // Limpiar espacios mÃºltiples
+        // Limpiar espacios múltiples
         optimized = optimized.replace(/\s+/g, ' ').trim();
 
         return optimized;
@@ -635,7 +635,7 @@ class CarolinaColsanitasSistema {
         this.appointmentsMonthEl.textContent = appointmentsThisMonth;
     }
 
-    // === CONFIGURACIÃ“N DE EVENTOS ===
+    // === CONFIGURACIÃN DE EVENTOS ===
     setupEventListeners() {
         this.callButton.addEventListener('click', () => {
             if (this.isCallActive) {
@@ -657,17 +657,17 @@ class CarolinaColsanitasSistema {
     // === RECONOCIMIENTO DE VOZ ===
     async initializeVoiceRecognition() {
         if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
-            console.error('âŒ Reconocimiento de voz no soportado');
+            console.error('✅ Reconocimiento de voz no soportado');
             return;
         }
 
-        // Solicitar permisos del micrÃ³fono si estÃ¡n disponibles
+        // Solicitar permisos del micrófono si están disponibles
         if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
             try {
                 await navigator.mediaDevices.getUserMedia({ audio: true });
-                console.log('âœ… Permisos del micrÃ³fono otorgados');
+                console.log('⚠Permisos del micrófono otorgados');
             } catch (error) {
-                console.warn('âš ï¸ No se pudieron obtener permisos del micrÃ³fono:', error);
+                console.warn('✅  No se pudieron obtener permisos del micrófono:', error);
                 // Continuar de todas formas, algunos navegadores no requieren esto
             }
         }
@@ -681,9 +681,9 @@ class CarolinaColsanitasSistema {
         this.recognition.maxAlternatives = 1;
 
         this.recognition.onstart = () => {
-            console.log('ðŸŽ¤ Reconocimiento iniciado');
+            console.log('📋¤ Reconocimiento iniciado');
             this.updateMicrophoneStatus(true);
-            this.updateCallStatus('ðŸŽ§ Carolina escucha - Habla cuando quiera', 'listening');
+            this.updateCallStatus('📋§ Carolina escucha - Habla cuando quiera', 'listening');
             this.finalTranscript = '';
             this.interimTranscript = '';
         };
@@ -703,7 +703,7 @@ class CarolinaColsanitasSistema {
 
             const currentText = this.finalTranscript + this.interimTranscript;
             if (currentText.trim()) {
-                this.transcript.textContent = `ðŸŽ¤ "${currentText.trim()}"`;
+                this.transcript.textContent = `📋¤ "${currentText.trim()}"`;
             }
 
             clearTimeout(this.silenceTimer);
@@ -715,18 +715,18 @@ class CarolinaColsanitasSistema {
         };
 
         this.recognition.onerror = (event) => {
-            console.warn('âŒ Error reconocimiento:', event.error);
+            console.warn('✅ Error reconocimiento:', event.error);
             clearTimeout(this.silenceTimer);
             this.updateMicrophoneStatus(false);
 
             // Errores que no requieren reintento
             if (event.error === 'aborted') {
-                console.log('â„¹ï¸ Reconocimiento abortado (normal)');
+                console.log('✅¹ Reconocimiento abortado (normal)');
                 return;
             }
 
             if (event.error === 'no-speech') {
-                console.log('â„¹ï¸ No se detectÃ³ habla (normal)');
+                console.log('✅¹ No se detectó habla (normal)');
                 // Reactivar si la llamada sigue activa
                 if (this.isCallActive && !this.isCarolinaSpeaking && !this.isProcessingResponse) {
                     setTimeout(() => this.activateMicrophone(), 500);
@@ -736,19 +736,19 @@ class CarolinaColsanitasSistema {
 
             // Para otros errores, intentar reactivar
             if (this.isCallActive && !this.isCarolinaSpeaking && !this.isProcessingResponse) {
-                console.log('ðŸ”„ Reintentando reconocimiento despuÃ©s de error...');
+                console.log('📋 Reintentando reconocimiento después de error...');
                 setTimeout(() => this.activateMicrophone(), 1000);
             }
         };
 
         this.recognition.onend = () => {
-            console.log('ðŸ”š Reconocimiento terminado');
+            console.log('📋 Reconocimiento terminado');
             this.updateMicrophoneStatus(false);
 
             if (this.finalTranscript.trim()) {
                 this.processUserInput();
             } else if (this.isCallActive && !this.isCarolinaSpeaking && !this.isProcessingResponse) {
-                // Esperar un poco mÃ¡s antes de reactivar para evitar conflictos
+                // Esperar un poco más antes de reactivar para evitar conflictos
                 setTimeout(() => {
                     if (this.isCallActive && !this.isCarolinaSpeaking && !this.isProcessingResponse && !this.isMicrophoneActive) {
                         this.activateMicrophone();
@@ -758,10 +758,10 @@ class CarolinaColsanitasSistema {
         };
     }
 
-    // === CONTROL DE MICRÃ“FONO ===
+    // === CONTROL DE MICRÃFONO ===
     activateMicrophone() {
         if (!this.isCallActive || this.isCarolinaSpeaking || this.isProcessingResponse) {
-            console.log('â¸ï¸ MicrÃ³fono no activado - condiciones no cumplidas:', {
+            console.log('✅¸ Micrófono no activado - condiciones no cumplidas:', {
                 isCallActive: this.isCallActive,
                 isCarolinaSpeaking: this.isCarolinaSpeaking,
                 isProcessingResponse: this.isProcessingResponse
@@ -770,33 +770,33 @@ class CarolinaColsanitasSistema {
         }
 
         if (!this.recognition) {
-            console.error('âŒ Reconocimiento no inicializado');
+            console.error('✅ Reconocimiento no inicializado');
             return;
         }
 
         // Verificar el estado del reconocimiento antes de iniciar
         const state = this.recognition.state || 'unknown';
         if (state === 'listening' || state === 'starting') {
-            console.log('âœ… MicrÃ³fono ya estÃ¡ activo, estado:', state);
+            console.log('⚠Micrófono ya está activo, estado:', state);
             this.updateMicrophoneStatus(true);
             return;
         }
 
-        console.log('ðŸŽ¤ Activando micrÃ³fono... Estado actual:', state);
+        console.log('📋¤ Activando micrófono... Estado actual:', state);
 
         try {
             this.recognition.start();
-            console.log('âœ… Comando start() enviado al reconocimiento');
+            console.log('⚠Comando start() enviado al reconocimiento');
         } catch (error) {
-            console.error('âŒ Error activando micrÃ³fono:', error.name, error.message);
+            console.error('✅ Error activando micrófono:', error.name, error.message);
 
-            // Si el error es porque ya estÃ¡ activo, actualizar estado
+            // Si el error es porque ya está activo, actualizar estado
             if (error.name === 'InvalidStateError') {
-                console.log('âš ï¸ Reconocimiento ya estaba activo, actualizando estado');
+                console.log('✅  Reconocimiento ya estaba activo, actualizando estado');
                 this.updateMicrophoneStatus(true);
             } else {
-                // Para otros errores, reintentar despuÃ©s de un tiempo
-                console.log('ðŸ”„ Reintentando activaciÃ³n en 1 segundo...');
+                // Para otros errores, reintentar después de un tiempo
+                console.log('📋 Reintentando activación en 1 segundo...');
                 setTimeout(() => {
                     if (this.isCallActive && !this.isCarolinaSpeaking && !this.isProcessingResponse) {
                         this.activateMicrophone();
@@ -807,7 +807,7 @@ class CarolinaColsanitasSistema {
     }
 
     deactivateMicrophone() {
-        console.log('ðŸ”‡ Desactivando micrÃ³fono...');
+        console.log('📋 Desactivando micrófono...');
 
         clearTimeout(this.silenceTimer);
         clearTimeout(this.microphoneTimer);
@@ -831,7 +831,7 @@ class CarolinaColsanitasSistema {
         const userMessage = this.finalTranscript.trim();
         if (!userMessage) return;
 
-        console.log('ðŸ§  Procesando:', userMessage);
+        console.log('📋§  Procesando:', userMessage);
 
         this.deactivateMicrophone();
         this.addToConversation(userMessage, 'patient');
@@ -839,7 +839,7 @@ class CarolinaColsanitasSistema {
         this.updateStats();
 
         this.isProcessingResponse = true;
-        this.updateCallStatus('âš¡ Carolina procesando consulta mÃ©dica...', 'processing');
+        this.updateCallStatus('✅¡ Carolina procesando consulta médica...', 'processing');
         this.updateCarolinaStatus('Procesando');
 
         const startTime = performance.now();
@@ -854,7 +854,7 @@ class CarolinaColsanitasSistema {
 
             this.isProcessingResponse = false;
 
-            // Detectar si es cierre de gestiÃ³n mÃ©dica
+            // Detectar si es cierre de gestión médica
             if (this.isEndOfServiceMessage(response)) {
                 this.saveCallToDatabase();
                 setTimeout(() => this.endCall(), 3000);
@@ -863,7 +863,7 @@ class CarolinaColsanitasSistema {
             }
 
         } catch (error) {
-            console.error('âŒ Error generando respuesta:', error);
+            console.error('✅ Error generando respuesta:', error);
             this.isProcessingResponse = false;
             const fallbackResponse = this.getFallbackMedicalResponse();
             this.addToConversation(fallbackResponse, 'carolina');
@@ -877,16 +877,16 @@ class CarolinaColsanitasSistema {
             const response = await fetch(`https://generativelanguage.googleapis.com/v1/models?key=${this.GEMINI_API_KEY}`);
             if (response.ok) {
                 const data = await response.json();
-                console.log('ðŸ“‹ Modelos disponibles:', data.models?.map(m => m.name) || []);
+                console.log('📋 Modelos disponibles:', data.models?.map(m => m.name) || []);
                 return data.models || [];
             }
         } catch (error) {
-            console.warn('âš ï¸ No se pudieron listar modelos:', error);
+            console.warn('✅  No se pudieron listar modelos:', error);
         }
         return [];
     }
 
-    // === EXTRACCIÃ“N DE INFORMACIÃ“N DEL MENSAJE ===
+    // === EXTRACCIÃN DE INFORMACIÃN DEL MENSAJE ===
     extractAppointmentInfo(userMessage, conversationHistory) {
         let patientName = null;
         let documentNumber = null;
@@ -897,9 +897,9 @@ class CarolinaColsanitasSistema {
         const allMessages = conversationHistory.map(m => m.message).join(' ') + ' ' + userMessage;
         const fullText = allMessages.toLowerCase();
 
-        // Extraer nÃºmero de documento (formato colombiano: 8-11 dÃ­gitos, puede tener espacios)
+        // Extraer número de documento (formato colombiano: 8-11 dígitos, puede tener espacios)
         const docPatterns = [
-            /(?:documento|cedula|cÃ©dula|identificaciÃ³n|identificacion|numero|nÃºmero)[\s:]*(\d{1,3}(?:\s?\d{3}){2,3})/i,
+            /(?:documento|cedula|cédula|identificación|identificacion|numero|número)[\s:]*(\d{1,3}(?:\s?\d{3}){2,3})/i,
             /(\d{8,11})/g
         ];
 
@@ -911,11 +911,11 @@ class CarolinaColsanitasSistema {
             }
         }
 
-        // Extraer nombre (patrones comunes, buscar en texto original para mantener mayÃºsculas)
+        // Extraer nombre (patrones comunes, buscar en texto original para mantener mayúsculas)
         const namePatterns = [
-            /(?:mi nombre (?:es|completo es|es completo) |me llamo |soy |nombre completo:?\s*)([A-ZÃÃ‰ÃÃ“ÃšÃ‘][a-zÃ¡Ã©Ã­Ã³ÃºÃ±]+(?:\s+[A-ZÃÃ‰ÃÃ“ÃšÃ‘][a-zÃ¡Ã©Ã­Ã³ÃºÃ±]+)+)/i,
-            /(?:nombre:?\s*)([A-ZÃÃ‰ÃÃ“ÃšÃ‘][a-zÃ¡Ã©Ã­Ã³ÃºÃ±]+(?:\s+[A-ZÃÃ‰ÃÃ“ÃšÃ‘][a-zÃ¡Ã©Ã­Ã³ÃºÃ±]+)+)/i,
-            /([A-ZÃÃ‰ÃÃ“ÃšÃ‘][a-zÃ¡Ã©Ã­Ã³ÃºÃ±]+\s+[A-ZÃÃ‰ÃÃ“ÃšÃ‘][a-zÃ¡Ã©Ã­Ã³ÃºÃ±]+\s+[A-ZÃÃ‰ÃÃ“ÃšÃ‘][a-zÃ¡Ã©Ã­Ã³ÃºÃ±]+)/ // Tres palabras con mayÃºscula
+            /(?:mi nombre (?:es|completo es|es completo) |me llamo |soy |nombre completo:?\s*)([A-ZÃÃÃÃÃÃ][a-záéíóúñ]+(?:\s+[A-ZÃÃÃÃÃÃ][a-záéíóúñ]+)+)/i,
+            /(?:nombre:?\s*)([A-ZÃÃÃÃÃÃ][a-záéíóúñ]+(?:\s+[A-ZÃÃÃÃÃÃ][a-záéíóúñ]+)+)/i,
+            /([A-ZÃÃÃÃÃÃ][a-záéíóúñ]+\s+[A-ZÃÃÃÃÃÃ][a-záéíóúñ]+\s+[A-ZÃÃÃÃÃÃ][a-záéíóúñ]+)/ // Tres palabras con mayúscula
         ];
 
         for (const pattern of namePatterns) {
@@ -928,11 +928,11 @@ class CarolinaColsanitasSistema {
 
         // Extraer especialidad (buscar variaciones)
         const specialtyMap = {
-            'odontologia': ['odontologia', 'odontÃ³logo', 'odontologo', 'dental', 'diente', 'dientes', 'odontologÃ­a'],
-            'cardiologia': ['cardiologia', 'cardiÃ³logo', 'cardiaco', 'corazÃ³n', 'corazon', 'cardiologÃ­a'],
-            'pediatria': ['pediatria', 'pediatra', 'niÃ±o', 'niÃ±os', 'niÃ±a', 'niÃ±as', 'pediatrÃ­a'],
-            'ginecologia': ['ginecologia', 'ginecÃ³logo', 'ginecologo', 'ginecologÃ­a'],
-            'dermatologia': ['dermatologia', 'dermatÃ³logo', 'dermatologo', 'piel', 'dermatologÃ­a'],
+            'odontologia': ['odontologia', 'odontólogo', 'odontologo', 'dental', 'diente', 'dientes', 'odontología'],
+            'cardiologia': ['cardiologia', 'cardiólogo', 'cardiaco', 'corazón', 'corazon', 'cardiología'],
+            'pediatria': ['pediatria', 'pediatra', 'niño', 'niños', 'niña', 'niñas', 'pediatría'],
+            'ginecologia': ['ginecologia', 'ginecólogo', 'ginecologo', 'ginecología'],
+            'dermatologia': ['dermatologia', 'dermatólogo', 'dermatologo', 'piel', 'dermatología'],
             'ortopedia': ['ortopedia', 'ortopedista', 'hueso', 'huesos', 'fractura']
         };
 
@@ -946,14 +946,14 @@ class CarolinaColsanitasSistema {
             if (specialty) break;
         }
 
-        // Extraer dÃ­a de la semana (buscar variaciones)
+        // Extraer día de la semana (buscar variaciones)
         const dayMap = {
             'lunes': ['lunes'],
             'martes': ['martes'],
-            'miÃ©rcoles': ['miÃ©rcoles', 'miercoles'],
+            'miércoles': ['miércoles', 'miercoles'],
             'jueves': ['jueves'],
             'viernes': ['viernes'],
-            'sÃ¡bado': ['sÃ¡bado', 'sabado'],
+            'sábado': ['sábado', 'sabado'],
             'domingo': ['domingo']
         };
 
@@ -967,18 +967,18 @@ class CarolinaColsanitasSistema {
             if (dayOfWeek) break;
         }
 
-        // Si tenemos suficiente informaciÃ³n, simular bÃºsqueda de cita
+        // Si tenemos suficiente información, simular búsqueda de cita
         if (patientName && documentNumber) {
-            // Para urgencias y prioritarias, no necesitamos dÃ­a de la semana
+            // Para urgencias y prioritarias, no necesitamos día de la semana
             if (this.currentServiceType === 'urgencia' || this.currentServiceType === 'prioritaria') {
                 if (patientName && documentNumber) {
-                    console.log('ðŸ“‹ InformaciÃ³n extraÃ­da:', { patientName, documentNumber, specialty });
+                    console.log('📋 Información extraída:', { patientName, documentNumber, specialty });
                     return this.simulateAppointmentSearch(patientName, documentNumber, specialty, null, this.currentServiceType);
                 }
             } else {
-                // Para confirmaciones normales, necesitamos dÃ­a de la semana
+                // Para confirmaciones normales, necesitamos día de la semana
                 if (patientName && documentNumber && specialty && dayOfWeek) {
-                    console.log('ðŸ“‹ InformaciÃ³n extraÃ­da:', { patientName, documentNumber, specialty, dayOfWeek });
+                    console.log('📋 Información extraída:', { patientName, documentNumber, specialty, dayOfWeek });
                     return this.simulateAppointmentSearch(patientName, documentNumber, specialty, dayOfWeek, this.currentServiceType);
                 }
             }
@@ -987,25 +987,25 @@ class CarolinaColsanitasSistema {
         return null;
     }
 
-    // === EXTRACCIÃ“N DE INFORMACIÃ“N DE URGENCIA ===
+    // === EXTRACCIÃN DE INFORMACIÃN DE URGENCIA ===
     extractEmergencyInfo(userMessage, conversationHistory) {
         let patientName = null;
         let documentNumber = null;
         let specialty = null;
         let location = null;
 
-        // Buscar informaciÃ³n en el historial y mensaje actual
+        // Buscar información en el historial y mensaje actual
         const allMessages = conversationHistory.map(m => m.message).join(' ') + ' ' + userMessage;
         const fullText = allMessages.toLowerCase();
 
-        // Extraer nÃºmero de documento
-        // Primero intentar con patrÃ³n especÃ­fico (con grupos)
-        const specificDocPattern = /(?:documento|cedula|cÃ©dula|identificaciÃ³n|identificacion|numero|nÃºmero)[\s:]*(\d{1,3}(?:\s?\d{3}){2,3})/i;
+        // Extraer número de documento
+        // Primero intentar con patrón específico (con grupos)
+        const specificDocPattern = /(?:documento|cedula|cédula|identificación|identificacion|numero|número)[\s:]*(\d{1,3}(?:\s?\d{3}){2,3})/i;
         const specificMatch = allMessages.match(specificDocPattern);
         if (specificMatch && specificMatch[1]) {
             documentNumber = specificMatch[1].replace(/\s/g, '');
         } else {
-            // Si no encuentra con patrÃ³n especÃ­fico, buscar cualquier nÃºmero de 8-11 dÃ­gitos
+            // Si no encuentra con patrón específico, buscar cualquier número de 8-11 dígitos
             const generalDocPattern = /(\d{8,11})/;
             const generalMatch = allMessages.match(generalDocPattern);
             if (generalMatch && generalMatch[1]) {
@@ -1015,8 +1015,8 @@ class CarolinaColsanitasSistema {
 
         // Extraer nombre
         const namePatterns = [
-            /(?:mi nombre (?:es|completo es|es completo) |me llamo |soy |nombre completo:?\s*)([A-ZÃÃ‰ÃÃ“ÃšÃ‘][a-zÃ¡Ã©Ã­Ã³ÃºÃ±]+(?:\s+[A-ZÃÃ‰ÃÃ“ÃšÃ‘][a-zÃ¡Ã©Ã­Ã³ÃºÃ±]+)+)/i,
-            /(?:nombre:?\s*)([A-ZÃÃ‰ÃÃ“ÃšÃ‘][a-zÃ¡Ã©Ã­Ã³ÃºÃ±]+(?:\s+[A-ZÃÃ‰ÃÃ“ÃšÃ‘][a-zÃ¡Ã©Ã­Ã³ÃºÃ±]+)+)/i
+            /(?:mi nombre (?:es|completo es|es completo) |me llamo |soy |nombre completo:?\s*)([A-ZÃÃÃÃÃÃ][a-záéíóúñ]+(?:\s+[A-ZÃÃÃÃÃÃ][a-záéíóúñ]+)+)/i,
+            /(?:nombre:?\s*)([A-ZÃÃÃÃÃÃ][a-záéíóúñ]+(?:\s+[A-ZÃÃÃÃÃÃ][a-záéíóúñ]+)+)/i
         ];
 
         for (const pattern of namePatterns) {
@@ -1029,11 +1029,11 @@ class CarolinaColsanitasSistema {
 
         // Extraer especialidad si se menciona
         const specialtyMap = {
-            'odontologia': ['odontologia', 'odontÃ³logo', 'dental'],
-            'cardiologia': ['cardiologia', 'cardiÃ³logo', 'corazÃ³n'],
-            'pediatria': ['pediatria', 'pediatra', 'niÃ±o'],
-            'ginecologia': ['ginecologia', 'ginecÃ³logo'],
-            'dermatologia': ['dermatologia', 'dermatÃ³logo'],
+            'odontologia': ['odontologia', 'odontólogo', 'dental'],
+            'cardiologia': ['cardiologia', 'cardiólogo', 'corazón'],
+            'pediatria': ['pediatria', 'pediatra', 'niño'],
+            'ginecologia': ['ginecologia', 'ginecólogo'],
+            'dermatologia': ['dermatologia', 'dermatólogo'],
             'ortopedia': ['ortopedia', 'ortopedista']
         };
 
@@ -1047,8 +1047,8 @@ class CarolinaColsanitasSistema {
             if (specialty) break;
         }
 
-        // Extraer ubicaciÃ³n si se menciona (incluyendo municipios)
-        const locationKeywords = ['bogotÃ¡', 'bogota', 'medellÃ­n', 'medellin', 'cali', 'barranquilla',
+        // Extraer ubicación si se menciona (incluyendo municipios)
+        const locationKeywords = ['bogotá', 'bogota', 'medellín', 'medellin', 'cali', 'barranquilla',
             'norte', 'sur', 'centro', 'mosquera', 'cundinamarca', 'soacha', 'chia'];
         for (const keyword of locationKeywords) {
             if (fullText.includes(keyword)) {
@@ -1057,30 +1057,30 @@ class CarolinaColsanitasSistema {
             }
         }
 
-        // Si tenemos informaciÃ³n mÃ­nima, generar respuesta de urgencia
+        // Si tenemos información mínima, generar respuesta de urgencia
         if (patientName && documentNumber) {
-            console.log('ðŸš¨ InformaciÃ³n de urgencia extraÃ­da:', { patientName, documentNumber, specialty, location });
+            console.log('📋¨ Información de urgencia extraída:', { patientName, documentNumber, specialty, location });
             return this.simulateEmergencyResponse(patientName, documentNumber, specialty, location);
         }
 
         return null;
     }
 
-    // === GENERACIÃ“N DE RESPUESTA MÃ‰DICA ===
+    // === GENERACIÃN DE RESPUESTA MÃDICA ===
     async generateMedicalResponse(userMessage) {
         const systemPrompt = this.getMedicalSystemPrompt();
 
         // Usando solo gemini-2.5-flash-lite para optimizar tiempo de respuesta
-        // VersiÃ³n ligera y rÃ¡pida del modelo
+        // Versión ligera y rápida del modelo
         const modelConfigs = [
             { version: 'v1beta', model: 'gemini-2.5-flash-lite' },
             { version: 'v1', model: 'gemini-2.5-flash-lite' },
         ];
 
-        // Construir el historial de conversaciÃ³n para contexto
+        // Construir el historial de conversación para contexto
         let conversationContext = '';
         if (this.conversationHistory.length > 0) {
-            // Incluir las Ãºltimas 6 interacciones para contexto (3 turnos de cada uno)
+            // Incluir las últimas 6 interacciones para contexto (3 turnos de cada uno)
             const recentHistory = this.conversationHistory.slice(-6);
             conversationContext = recentHistory.map(msg => {
                 const role = msg.speaker === 'patient' ? 'Paciente' : 'Carolina';
@@ -1088,35 +1088,35 @@ class CarolinaColsanitasSistema {
             }).join('\n') + '\n\n';
         }
 
-        // Intentar extraer informaciÃ³n segÃºn el tipo de servicio
+        // Intentar extraer información según el tipo de servicio
         let appointmentContext = '';
 
         if (this.currentServiceType === 'urgencia') {
-            // Para urgencias, buscar informaciÃ³n mÃ­nima y generar respuesta de emergencia
+            // Para urgencias, buscar información mínima y generar respuesta de emergencia
             const emergencyInfo = this.extractEmergencyInfo(userMessage, this.conversationHistory);
             if (emergencyInfo) {
-                appointmentContext = `\n\nINFORMACIÃ“N DE URGENCIA MÃ‰DICA (usa estos datos exactos):
+                appointmentContext = `\n\nINFORMACIÃN DE URGENCIA MÃDICA (usa estos datos exactos):
 - Nombre del paciente: ${emergencyInfo.patientName}
-- NÃºmero de documento: ${emergencyInfo.documentNumber}
-- CÃ³digo de urgencia: ${emergencyInfo.emergencyCode}
-- ClÃ­nica asignada: ${emergencyInfo.clinic}
-- DirecciÃ³n: ${emergencyInfo.address}
-- TelÃ©fono de urgencias: ${emergencyInfo.phone}
+- Número de documento: ${emergencyInfo.documentNumber}
+- Código de urgencia: ${emergencyInfo.emergencyCode}
+- Clínica asignada: ${emergencyInfo.clinic}
+- Dirección: ${emergencyInfo.address}
+- Teléfono de urgencias: ${emergencyInfo.phone}
 - Hora de llegada estimada: ${emergencyInfo.arrivalTime}
 - Instrucciones: ${emergencyInfo.instructions}
 
-IMPORTANTE: Proporciona TODA esta informaciÃ³n de forma clara y urgente. El paciente debe dirigirse INMEDIATAMENTE.`;
+IMPORTANTE: Proporciona TODA esta información de forma clara y urgente. El paciente debe dirigirse INMEDIATAMENTE.`;
             }
         } else {
-            // Para confirmaciones y prioritarias, extraer informaciÃ³n completa de cita
+            // Para confirmaciones y prioritarias, extraer información completa de cita
             const appointmentInfo = this.extractAppointmentInfo(userMessage, this.conversationHistory);
             if (appointmentInfo) {
-                appointmentContext = `\n\nINFORMACIÃ“N DE LA CITA DEL PACIENTE (usa estos datos exactos, NO uses placeholders):
+                appointmentContext = `\n\nINFORMACIÃN DE LA CITA DEL PACIENTE (usa estos datos exactos, NO uses placeholders):
 - Nombre del paciente: ${appointmentInfo.patientName}
-- NÃºmero de documento: ${appointmentInfo.documentNumber}
+- Número de documento: ${appointmentInfo.documentNumber}
 - Especialidad: ${appointmentInfo.specialty}
 - Doctor asignado: ${appointmentInfo.doctor}
-- ClÃ­nica: ${appointmentInfo.clinic}
+- Clínica: ${appointmentInfo.clinic}
 - Fecha: ${appointmentInfo.date}
 - Hora: ${appointmentInfo.time}
 - Estado: ${appointmentInfo.status}
@@ -1144,7 +1144,7 @@ Carolina:`
             }
         };
 
-        // Intentar con cada configuraciÃ³n hasta que una funcione
+        // Intentar con cada configuración hasta que una funcione
         for (const config of modelConfigs) {
             try {
                 // Probar primero con API key en query parameter
@@ -1153,8 +1153,8 @@ Carolina:`
                     'Content-Type': 'application/json',
                 };
 
-                console.log(`ðŸ”„ Intentando con modelo: ${config.model} (${config.version})`);
-                console.log(`ðŸ“ Endpoint: ${endpoint.replace(this.GEMINI_API_KEY, 'API_KEY_HIDDEN')}`);
+                console.log(`📋 Intentando con modelo: ${config.model} (${config.version})`);
+                console.log(`📋 Endpoint: ${endpoint.replace(this.GEMINI_API_KEY, 'API_KEY_HIDDEN')}`);
 
                 let response = await fetch(endpoint, {
                     method: 'POST',
@@ -1164,7 +1164,7 @@ Carolina:`
 
                 // Si falla con 404, probar con API key en header
                 if (!response.ok && response.status === 404) {
-                    console.log(`ðŸ”„ Probando con API key en header...`);
+                    console.log(`📋 Probando con API key en header...`);
                     endpoint = `https://generativelanguage.googleapis.com/${config.version}/models/${config.model}:generateContent`;
                     headers = {
                         'Content-Type': 'application/json',
@@ -1181,158 +1181,158 @@ Carolina:`
                 if (!response.ok) {
                     const errorData = await response.json().catch(() => ({}));
                     const errorMessage = errorData.error?.message || errorData.message || 'Unknown error';
-                    console.warn(`âŒ Error con ${config.model} (${config.version}):`, response.status);
-                    console.warn(`ðŸ“ Mensaje de error:`, errorMessage);
-                    console.warn(`ðŸ“‹ Detalles completos:`, errorData);
+                    console.warn(`✅ Error con ${config.model} (${config.version}):`, response.status);
+                    console.warn(`📋 Mensaje de error:`, errorMessage);
+                    console.warn(`📋 Detalles completos:`, errorData);
 
                     // Si es 404, probar siguiente modelo
                     if (response.status === 404) {
                         continue;
                     }
 
-                    // Para otros errores, lanzar excepciÃ³n
+                    // Para otros errores, lanzar excepción
                     throw new Error(`Gemini API error: ${response.status} - ${errorMessage}`);
                 }
 
                 const data = await response.json();
 
                 if (data.candidates && data.candidates[0] && data.candidates[0].content) {
-                    console.log(`âœ… Ã‰xito con modelo: ${config.model} (${config.version})`);
+                    console.log(`⚠Ãxito con modelo: ${config.model} (${config.version})`);
                     return data.candidates[0].content.parts[0].text.trim();
                 } else {
-                    console.error('Respuesta invÃ¡lida de Gemini:', data);
+                    console.error('Respuesta inválida de Gemini:', data);
                     continue; // Probar siguiente modelo
                 }
 
             } catch (error) {
                 // Si no es un error de red, continuar con siguiente modelo
                 if (error.message && error.message.includes('404')) {
-                    console.warn(`âš ï¸ Modelo ${config.model} no disponible, probando siguiente...`);
+                    console.warn(`✅  Modelo ${config.model} no disponible, probando siguiente...`);
                     continue;
                 }
 
-                // Si es el Ãºltimo modelo, lanzar el error
+                // Si es el último modelo, lanzar el error
                 if (config === modelConfigs[modelConfigs.length - 1]) {
-                    console.error('âŒ Error con Gemini API:', error);
+                    console.error('✅ Error con Gemini API:', error);
                     throw error;
                 }
             }
         }
 
-        // Si ningÃºn modelo funcionÃ³, usar respuesta de fallback
-        console.warn('âš ï¸ NingÃºn modelo de Gemini funcionÃ³, usando respuesta de fallback');
+        // Si ningún modelo funcionó, usar respuesta de fallback
+        console.warn('✅  Ningún modelo de Gemini funcionó, usando respuesta de fallback');
         return this.getFallbackMedicalResponse();
     }
 
     getMedicalSystemPrompt() {
-        const basePrompt = `Eres Carolina MÃ©ndez, especialista en confirmaciones de citas mÃ©dicas de ColsÃ¡nitas. Trabajas en el departamento de gestiÃ³n de citas mÃ©dicas y tu objetivo es ayudar a los pacientes con sus necesidades mÃ©dicas.
+        const basePrompt = `Eres Carolina Méndez, especialista en confirmaciones de citas médicas de Colsánitas. Trabajas en el departamento de gestión de citas médicas y tu objetivo es ayudar a los pacientes con sus necesidades médicas.
 
-PROTOCOLO DE ATENCIÃ“N:
-1. Saluda profesionalmente SOLO en la primera interacciÃ³n
+PROTOCOLO DE ATENCIÃN:
+1. Saluda profesionalmente SOLO en la primera interacción
 2. Escucha atentamente la necesidad del paciente
-3. Proporciona una SOLUCIÃ“N CONCRETA
-4. NO repitas tu presentaciÃ³n si ya te presentaste anteriormente en la conversaciÃ³n
-5. MantÃ©n el contexto de la conversaciÃ³n y continÃºa de forma natural
-6. Cuando tengas informaciÃ³n de una cita confirmada, proporciona TODOS los detalles de forma clara y natural
+3. Proporciona una SOLUCIÃN CONCRETA
+4. NO repitas tu presentación si ya te presentaste anteriormente en la conversación
+5. Mantén el contexto de la conversación y continúa de forma natural
+6. Cuando tengas información de una cita confirmada, proporciona TODOS los detalles de forma clara y natural
 
-Tu personalidad: Profesional, MUY EMPÃTICA, CARIÃ‘OSA, ATENTA, cÃ¡lida, comprensiva, eficiente, orientada a soluciones mÃ©dicas. Muestra genuino interÃ©s por el bienestar del paciente.
+Tu personalidad: Profesional, MUY EMPÃTICA, CARIÃOSA, ATENTA, cálida, comprensiva, eficiente, orientada a soluciones médicas. Muestra genuino interés por el bienestar del paciente.
 
 TONO Y ESTILO:
-- SÃ© cÃ¡lida y cariÃ±osa en tu trato
-- Muestra empatÃ­a y comprensiÃ³n
-- Usa expresiones amables como "por supuesto", "con mucho gusto", "estoy aquÃ­ para ayudarle"
+- Sé cálida y cariñosa en tu trato
+- Muestra empatía y comprensión
+- Usa expresiones amables como "por supuesto", "con mucho gusto", "estoy aquí para ayudarle"
 - Reconoce las preocupaciones del paciente
 - Ofrece tranquilidad y confianza
-- SÃ© paciente y comprensiva
+- Sé paciente y comprensiva
 
 IMPORTANTE: 
 - Si ya te presentaste en mensajes anteriores, NO vuelvas a presentarte
-- ContinÃºa la conversaciÃ³n de forma natural basÃ¡ndote en el contexto previo
+- Continúa la conversación de forma natural basándote en el contexto previo
 - Siempre proporciona respuestas que sean SOLUCIONES PRÃCTICAS Y CONCRETAS
-- Si se te proporciona informaciÃ³n de una cita (fecha, hora, doctor, clÃ­nica), ÃšSALA DIRECTAMENTE en tu respuesta
+- Si se te proporciona información de una cita (fecha, hora, doctor, clínica), ÃSALA DIRECTAMENTE en tu respuesta
 - NUNCA uses placeholders como [insertar fecha], [insertar hora] o [insertar nombre del doctor]
-- Di la informaciÃ³n completa y real que se te proporciona
-- Muestra siempre una actitud cariÃ±osa y atenta hacia el paciente`;
+- Di la información completa y real que se te proporciona
+- Muestra siempre una actitud cariñosa y atenta hacia el paciente`;
 
         switch (this.currentServiceType) {
             case 'confirmacion':
                 return `${basePrompt}
 
-MODO: CONFIRMACIÃ“N DE CITAS
+MODO: CONFIRMACIÃN DE CITAS
 - Verifica citas existentes
 - Confirma fechas, horarios y especialistas
-- Proporciona informaciÃ³n de preparativos
-- EnvÃ­a recordatorios
-- Soluciona problemas de confirmaciÃ³n
+- Proporciona información de preparativos
+- Envía recordatorios
+- Soluciona problemas de confirmación
 
-ESTILO ESPECÃFICO PARA CONFIRMACIÃ“N:
-- SÃ© especialmente cariÃ±osa y atenta
-- Reconoce la importancia de su cita mÃ©dica
-- Ofrece tranquilidad sobre la confirmaciÃ³n
-- Muestra interÃ©s genuino en ayudarle
-- Usa expresiones como "con mucho gusto", "por supuesto", "estoy aquÃ­ para ayudarle"
-- SÃ© paciente si el paciente tiene dudas o necesita aclaraciones
+ESTILO ESPECÃFICO PARA CONFIRMACIÃN:
+- Sé especialmente cariñosa y atenta
+- Reconoce la importancia de su cita médica
+- Ofrece tranquilidad sobre la confirmación
+- Muestra interés genuino en ayudarle
+- Usa expresiones como "con mucho gusto", "por supuesto", "estoy aquí para ayudarle"
+- Sé paciente si el paciente tiene dudas o necesita aclaraciones
 
-Ejemplo de respuesta: "Por supuesto, con mucho gusto le ayudo. He verificado su cita y me complace confirmarle que estÃ¡ programada para el viernes quince de marzo a las diez y media de la maÃ±ana con el doctor GarcÃ­a en CardiologÃ­a. Le enviaremos un recordatorio veinticuatro horas antes para que no se le olvide. Â¿Hay algo mÃ¡s en lo que pueda ayudarle o alguna duda que tenga sobre su cita?"`;
+Ejemplo de respuesta: "Por supuesto, con mucho gusto le ayudo. He verificado su cita y me complace confirmarle que está programada para el viernes quince de marzo a las diez y media de la mañana con el doctor García en Cardiología. Le enviaremos un recordatorio veinticuatro horas antes para que no se le olvide. ¿Hay algo más en lo que pueda ayudarle o alguna duda que tenga sobre su cita?"`;
 
             case 'prioritaria':
                 return `${basePrompt}
 
 MODO: CITAS PRIORITARIAS
-- EvalÃºa la urgencia mÃ©dica del paciente
-- Coordina citas con prioridad (maÃ±ana o pasado maÃ±ana como mÃ¡ximo)
-- Gestiona reprogramaciones rÃ¡pidas
+- Evalúa la urgencia médica del paciente
+- Coordina citas con prioridad (mañana o pasado mañana como máximo)
+- Gestiona reprogramaciones rápidas
 - Contacta especialistas directamente
 - Proporciona alternativas inmediatas
-- Usa horarios prioritarios (mÃ¡s tempranos en el dÃ­a)
+- Usa horarios prioritarios (más tempranos en el día)
 
 ESTILO ESPECÃFICO PARA CITAS PRIORITARIAS:
-- SÃ© MUY empÃ¡tica y comprensiva con la situaciÃ³n del paciente
-- Reconoce su preocupaciÃ³n y urgencia
-- Tranquiliza al paciente asegurÃ¡ndole que se le darÃ¡ prioridad
-- Muestra que entiendes la importancia de su situaciÃ³n
-- SÃ© cariÃ±osa pero eficiente
+- Sé MUY empática y comprensiva con la situación del paciente
+- Reconoce su preocupación y urgencia
+- Tranquiliza al paciente asegurándole que se le dará prioridad
+- Muestra que entiendes la importancia de su situación
+- Sé cariñosa pero eficiente
 - Ofrece apoyo y tranquilidad
-- Usa expresiones como "entiendo perfectamente", "no se preocupe", "estoy aquÃ­ para ayudarle"
+- Usa expresiones como "entiendo perfectamente", "no se preocupe", "estoy aquí para ayudarle"
 
 INSTRUCCIONES ESPECÃFICAS:
-- Si se te proporciona informaciÃ³n de cita prioritaria, proporciona TODOS los detalles: fecha completa, hora exacta, doctor, clÃ­nica
-- Confirma que la cita prioritaria estÃ¡ coordinada con calidez
-- Menciona que se enviarÃ¡ confirmaciÃ³n por mensaje
-- NUNCA uses placeholders, usa la informaciÃ³n exacta proporcionada
+- Si se te proporciona información de cita prioritaria, proporciona TODOS los detalles: fecha completa, hora exacta, doctor, clínica
+- Confirma que la cita prioritaria está coordinada con calidez
+- Menciona que se enviará confirmación por mensaje
+- NUNCA uses placeholders, usa la información exacta proporcionada
 - Muestra que te importa su bienestar
 
-Ejemplo de respuesta: "Entiendo perfectamente su situaciÃ³n y no se preocupe, estoy aquÃ­ para ayudarle. He coordinado una cita prioritaria con el doctor [nombre] para [fecha completa] a las [hora exacta] en [clÃ­nica]. Su cÃ³digo de cita es [ID]. Le enviaremos un mensaje de confirmaciÃ³n con todos los detalles para que tenga toda la informaciÃ³n. Â¿Hay algo mÃ¡s en lo que pueda ayudarle o alguna preocupaciÃ³n que tenga?"`;
+Ejemplo de respuesta: "Entiendo perfectamente su situación y no se preocupe, estoy aquí para ayudarle. He coordinado una cita prioritaria con el doctor [nombre] para [fecha completa] a las [hora exacta] en [clínica]. Su código de cita es [ID]. Le enviaremos un mensaje de confirmación con todos los detalles para que tenga toda la información. ¿Hay algo más en lo que pueda ayudarle o alguna preocupación que tenga?"`;
 
             case 'urgencia':
                 return `${basePrompt}
 
-MODO: URGENCIAS MÃ‰DICAS
+MODO: URGENCIAS MÃDICAS
 - Activa protocolos de emergencia INMEDIATAMENTE
-- Coordina atenciÃ³n inmediata (dentro de 30 minutos)
-- Dirige al centro mÃ©dico mÃ¡s cercano disponible 24 horas
-- Proporciona cÃ³digos de referencia de urgencia
-- Gestiona atenciÃ³n sin cita previa
-- Proporciona direcciÃ³n completa y telÃ©fono de urgencias
+- Coordina atención inmediata (dentro de 30 minutos)
+- Dirige al centro médico más cercano disponible 24 horas
+- Proporciona códigos de referencia de urgencia
+- Gestiona atención sin cita previa
+- Proporciona dirección completa y teléfono de urgencias
 
 ESTILO ESPECÃFICO PARA URGENCIAS:
-- SÃ© MUY empÃ¡tica, cariÃ±osa y comprensiva con la situaciÃ³n del paciente
-- Reconoce su preocupaciÃ³n y urgencia con calidez
-- Tranquiliza al paciente asegurÃ¡ndole que se le darÃ¡ atenciÃ³n inmediata
+- Sé MUY empática, cariñosa y comprensiva con la situación del paciente
+- Reconoce su preocupación y urgencia con calidez
+- Tranquiliza al paciente asegurándole que se le dará atención inmediata
 - Muestra que te importa su bienestar y salud
-- SÃ© clara y directa pero mantÃ©n un tono cariÃ±oso y calmante
-- Ofrece apoyo emocional ademÃ¡s de la informaciÃ³n mÃ©dica
-- Usa expresiones como "no se preocupe", "estamos aquÃ­ para ayudarle", "todo va a estar bien"
-- Confirma que el personal mÃ©dico estÃ¡ preparado para recibirle
+- Sé clara y directa pero mantén un tono cariñoso y calmante
+- Ofrece apoyo emocional además de la información médica
+- Usa expresiones como "no se preocupe", "estamos aquí para ayudarle", "todo va a estar bien"
+- Confirma que el personal médico está preparado para recibirle
 
 INSTRUCCIONES ESPECÃFICAS:
-- Si se te proporciona informaciÃ³n de urgencia, proporciona TODOS los detalles: cÃ³digo de urgencia, clÃ­nica, direcciÃ³n completa, telÃ©fono, hora de llegada
-- Confirma que el personal mÃ©dico ya estÃ¡ informado con calidez
-- Instruye al paciente a dirigirse INMEDIATAMENTE pero de forma cariÃ±osa
-- NUNCA uses placeholders, usa la informaciÃ³n exacta proporcionada
-- Muestra preocupaciÃ³n genuina por su bienestar
+- Si se te proporciona información de urgencia, proporciona TODOS los detalles: código de urgencia, clínica, dirección completa, teléfono, hora de llegada
+- Confirma que el personal médico ya está informado con calidez
+- Instruye al paciente a dirigirse INMEDIATAMENTE pero de forma cariñosa
+- NUNCA uses placeholders, usa la información exacta proporcionada
+- Muestra preocupación genuina por su bienestar
 
-Ejemplo de respuesta: "Entiendo su situaciÃ³n y no se preocupe, estamos aquÃ­ para ayudarle. He activado el protocolo de emergencia y el personal mÃ©dico ya estÃ¡ informado de su llegada. Por favor, dirÃ­jase INMEDIATAMENTE a [clÃ­nica] ubicada en [direcciÃ³n completa]. Su cÃ³digo de urgencia es [cÃ³digo]. El telÃ©fono de urgencias es [telÃ©fono]. La hora estimada de llegada es [hora]. Todo va a estar bien, el equipo mÃ©dico estÃ¡ preparado para atenderle. Â¿Tiene alguna pregunta o necesita algo mÃ¡s antes de dirigirse?"`;
+Ejemplo de respuesta: "Entiendo su situación y no se preocupe, estamos aquí para ayudarle. He activado el protocolo de emergencia y el personal médico ya está informado de su llegada. Por favor, diríjase INMEDIATAMENTE a [clínica] ubicada en [dirección completa]. Su código de urgencia es [código]. El teléfono de urgencias es [teléfono]. La hora estimada de llegada es [hora]. Todo va a estar bien, el equipo médico está preparado para atenderle. ¿Tiene alguna pregunta o necesita algo más antes de dirigirse?"`;
 
             default:
                 return basePrompt;
@@ -1342,23 +1342,23 @@ Ejemplo de respuesta: "Entiendo su situaciÃ³n y no se preocupe, estamos aquÃ�
     getFallbackMedicalResponse() {
         switch (this.currentServiceType) {
             case 'confirmacion':
-                return 'Disculpe, permÃ­tame verificar su informaciÃ³n en el sistema. Â¿PodrÃ­a proporcionarme su nÃºmero de cÃ©dula para confirmar su cita mÃ©dica?';
+                return 'Disculpe, permítame verificar su información en el sistema. ¿Podría proporcionarme su número de cédula para confirmar su cita médica?';
             case 'prioritaria':
-                return 'Entiendo que necesita atenciÃ³n prioritaria. PermÃ­tame revisar la disponibilidad inmediata de especialistas. Â¿PodrÃ­a contarme brevemente cuÃ¡l es su situaciÃ³n mÃ©dica?';
+                return 'Entiendo que necesita atención prioritaria. Permítame revisar la disponibilidad inmediata de especialistas. ¿Podría contarme brevemente cuál es su situación médica?';
             case 'urgencia':
-                return 'Comprendo que es una urgencia mÃ©dica. Voy a activar el protocolo inmediatamente. Â¿PodrÃ­a decirme cuÃ¡l es su ubicaciÃ³n actual para dirigirle al centro mÃ¡s cercano?';
+                return 'Comprendo que es una urgencia médica. Voy a activar el protocolo inmediatamente. ¿Podría decirme cuál es su ubicación actual para dirigirle al centro más cercano?';
             default:
-                return 'PermÃ­tame ayudarle con su consulta mÃ©dica. Â¿PodrÃ­a proporcionarme mÃ¡s detalles sobre lo que necesita?';
+                return 'Permítame ayudarle con su consulta médica. ¿Podría proporcionarme más detalles sobre lo que necesita?';
         }
     }
 
     isEndOfServiceMessage(message) {
         const endPatterns = [
             'gracias por contactar',
-            'que tenga un buen dÃ­a',
+            'que tenga un buen día',
             'cuidese mucho',
             'nos vemos en su cita',
-            'hasta la prÃ³xima',
+            'hasta la próxima',
             'esperamos verle pronto'
         ];
 
@@ -1371,10 +1371,10 @@ Ejemplo de respuesta: "Entiendo su situaciÃ³n y no se preocupe, estamos aquÃ�
         if (!text || this.volume === 0) return;
 
         const optimizedText = this.optimizeForElevenLabs(text);
-        console.log('ðŸ—£ï¸ Carolina hablando:', optimizedText);
+        console.log('📋£ Carolina hablando:', optimizedText);
 
         this.isCarolinaSpeaking = true;
-        this.updateCallStatus('ðŸ—£ï¸ Carolina respondiendo...', 'speaking');
+        this.updateCallStatus('📋£ Carolina respondiendo...', 'speaking');
         this.updateCarolinaStatus('Hablando');
         this.audioVisualizer.style.display = 'block';
 
@@ -1412,7 +1412,7 @@ Ejemplo de respuesta: "Entiendo su situaciÃ³n y no se preocupe, estamos aquÃ�
                 };
 
                 this.currentAudio.onerror = () => {
-                    console.error('âŒ Error reproduciendo audio');
+                    console.error('✅ Error reproduciendo audio');
                     this.onSpeechEnded();
                 };
 
@@ -1425,23 +1425,23 @@ Ejemplo de respuesta: "Entiendo su situaciÃ³n y no se preocupe, estamos aquÃ�
             }
 
         } catch (error) {
-            console.error('âŒ Error sÃ­ntesis de voz:', error);
+            console.error('✅ Error síntesis de voz:', error);
             // Continuar sin audio si hay error
             this.onSpeechEnded();
         }
     }
 
     onSpeechEnded() {
-        console.log('âœ… Carolina terminÃ³ de hablar');
+        console.log('⚠Carolina terminó de hablar');
         this.isCarolinaSpeaking = false;
         this.audioVisualizer.style.display = 'none';
         this.updateCarolinaStatus('Lista');
 
         if (this.isCallActive) {
-            this.updateCallStatus('ðŸŽ§ Carolina escucha - Habla cuando quiera', 'listening');
-            // Activar micrÃ³fono despuÃ©s de que Carolina termine de hablar
+            this.updateCallStatus('📋§ Carolina escucha - Habla cuando quiera', 'listening');
+            // Activar micrófono después de que Carolina termine de hablar
             setTimeout(() => {
-                console.log('ðŸŽ¤ Intentando activar micrÃ³fono despuÃ©s de que Carolina hablÃ³...');
+                console.log('📋¤ Intentando activar micrófono después de que Carolina habló...');
                 this.activateMicrophone();
             }, 500);
         }
@@ -1454,31 +1454,31 @@ Ejemplo de respuesta: "Entiendo su situaciÃ³n y no se preocupe, estamos aquÃ�
 
     // === CONTROL DE LLAMADAS ===
     async startCall() {
-        console.log('ðŸ“ž Iniciando llamada mÃ©dica...');
+        console.log('📋 Iniciando llamada médica...');
 
         this.isCallActive = true;
         this.callButton.innerHTML = '<i class="fas fa-phone-slash"></i> Finalizar Llamada';
         this.callButton.classList.add('active');
         this.stopButton.style.display = 'inline-block';
 
-        this.updateCallStatus('ðŸ“ž Llamada conectada - Departamento MÃ©dico', 'connected');
+        this.updateCallStatus('📋 Llamada conectada - Departamento Médico', 'connected');
         this.updateCarolinaStatus('Conectada');
 
-        // Carolina saluda segÃºn el tipo de servicio
+        // Carolina saluda según el tipo de servicio
         const greeting = this.getInitialGreeting();
         this.addToConversation(greeting, 'carolina');
 
         // Hablar el saludo
         await this.speak(greeting);
 
-        // El micrÃ³fono se activarÃ¡ automÃ¡ticamente despuÃ©s de que Carolina termine de hablar
-        // en la funciÃ³n onSpeechEnded()
+        // El micrófono se activará automáticamente después de que Carolina termine de hablar
+        // en la función onSpeechEnded()
 
-        console.log('âœ… Llamada mÃ©dica iniciada');
+        console.log('⚠Llamada médica iniciada');
     }
 
     endCall() {
-        console.log('ðŸ“ž Finalizando llamada mÃ©dica...');
+        console.log('📋 Finalizando llamada médica...');
 
         this.isCallActive = false;
 
@@ -1494,9 +1494,9 @@ Ejemplo de respuesta: "Entiendo su situaciÃ³n y no se preocupe, estamos aquÃ�
 
         this.finalTranscript = '';
         this.interimTranscript = '';
-        this.transcript.textContent = 'Sistema mÃ©dico optimizado para gestiÃ³n de citas ColsÃ¡nitas ðŸ¥';
+        this.transcript.textContent = 'Sistema médico optimizado para gestión de citas Colsánitas 🏥';
 
-        console.log('âœ… Llamada mÃ©dica finalizada');
+        console.log('⚠Llamada médica finalizada');
     }
 
     stopAudio() {
@@ -1517,14 +1517,14 @@ Ejemplo de respuesta: "Entiendo su situaciÃ³n y no se preocupe, estamos aquÃ�
         }
     }
 
-    // === GESTIÃ“N DE CONVERSACIÃ“N ===
+    // === GESTIÃN DE CONVERSACIÃN ===
     addToConversation(message, speaker) {
         const conversationItem = document.createElement('div');
         conversationItem.className = `conversation-item ${speaker === 'patient' ? 'patient-speech' : 'carolina-speech'}`;
 
         const label = document.createElement('div');
         label.className = 'speech-label';
-        label.textContent = speaker === 'patient' ? 'ðŸ‘¤ Paciente:' : 'ðŸ¥ Carolina:';
+        label.textContent = speaker === 'patient' ? '📋¤ Paciente:' : '📋¥ Carolina:';
 
         const content = document.createElement('div');
         content.textContent = message;
@@ -1602,31 +1602,31 @@ Ejemplo de respuesta: "Entiendo su situaciÃ³n y no se preocupe, estamos aquÃ�
         const samplePatients = [
             {
                 id: 1,
-                name: 'MarÃ­a GonzÃ¡lez',
+                name: 'María González',
                 phone: '3001234567',
                 cedula: '1234567890',
-                city: 'BogotÃ¡',
-                specialty: 'CardiologÃ­a',
+                city: 'Bogotá',
+                specialty: 'Cardiología',
                 lastAppointment: '2024-03-15',
                 status: 'confirmada'
             },
             {
                 id: 2,
-                name: 'Carlos RodrÃ­guez',
+                name: 'Carlos Rodríguez',
                 phone: '3109876543',
                 cedula: '0987654321',
-                city: 'MedellÃ­n',
+                city: 'Medellín',
                 specialty: 'Ortopedia',
                 lastAppointment: '2024-03-20',
                 status: 'pendiente'
             },
             {
                 id: 3,
-                name: 'Ana MartÃ­nez',
+                name: 'Ana Martínez',
                 phone: '3157894561',
                 cedula: '1122334455',
                 city: 'Cali',
-                specialty: 'GinecologÃ­a',
+                specialty: 'Ginecología',
                 lastAppointment: '2024-03-18',
                 status: 'programada'
             }
@@ -1657,7 +1657,7 @@ function changeServiceType(type) {
     // Actualizar mensaje de bienvenida
     carolinaSistema.updateCallStatus(carolinaSistema.getWelcomeMessage(), 'waiting');
 
-    console.log(`ðŸ”„ Tipo de servicio cambiado a: ${type}`);
+    console.log(`📋 Tipo de servicio cambiado a: ${type}`);
 }
 
 function switchTab(tabName) {
@@ -1674,11 +1674,11 @@ function switchTab(tabName) {
     // Mostrar contenido seleccionado
     document.getElementById(tabName).classList.add('active');
 
-    // Activar botÃ³n seleccionado
+    // Activar botón seleccionado
     event.target.classList.add('active');
 }
 
-// === FUNCIONES DE BÃšSQUEDA Y CRM ===
+// === FUNCIONES DE BÃSQUEDA Y CRM ===
 function searchPatients() {
     const patientType = document.getElementById('patientTypeFilter').value;
     const specialty = document.getElementById('specialtyFilter').value;
@@ -1706,12 +1706,12 @@ function displayPatientsList(patients, containerId) {
     container.innerHTML = patients.map(patient => `
                 <div class="patient-card">
                     <div class="patient-name">${patient.name}</div>
-                    <div class="patient-info">ðŸ“± ${patient.phone}</div>
-                    <div class="patient-info">ðŸ†” ${patient.cedula}</div>
-                    <div class="patient-info">ðŸ¥ ${patient.specialty}</div>
-                    <div class="patient-info">ðŸ“ ${patient.city}</div>
-                    <div class="patient-info">ðŸ“… Ãšltima cita: ${patient.lastAppointment}</div>
-                    <div class="patient-info">ðŸ“Š Estado: <strong>${patient.status}</strong></div>
+                    <div class="patient-info">📋± ${patient.phone}</div>
+                    <div class="patient-info">📋 ${patient.cedula}</div>
+                    <div class="patient-info">📋¥ ${patient.specialty}</div>
+                    <div class="patient-info">📋 ${patient.city}</div>
+                    <div class="patient-info">📋 Ãltima cita: ${patient.lastAppointment}</div>
+                    <div class="patient-info">📋 Estado: <strong>${patient.status}</strong></div>
                     <div class="patient-actions">
                         <button class="action-button" onclick="callPatient('${patient.id}')">
                             <i class="fas fa-phone"></i> Llamar
@@ -1752,7 +1752,7 @@ function editPatient(patientId) {
 }
 
 function viewHistory(patientId) {
-    alert(`Historial mÃ©dico del paciente ID: ${patientId}`);
+    alert(`Historial médico del paciente ID: ${patientId}`);
 }
 
 function exportData() {
@@ -1817,8 +1817,8 @@ function displayReports() {
         container.innerHTML = `
                     <div style="text-align: center; color: #888888; padding: 40px;">
                         <i class="fas fa-clipboard" style="font-size: 3rem; margin-bottom: 20px; color: #0066cc;"></i>
-                        <h3>No hay informes generados aÃºn</h3>
-                        <p>Realiza una llamada y genera un informe automÃ¡tico mÃ©dico</p>
+                        <h3>No hay informes generados aún</h3>
+                        <p>Realiza una llamada y genera un informe automático médico</p>
                     </div>
                 `;
         return;
@@ -1827,7 +1827,7 @@ function displayReports() {
     container.innerHTML = carolinaSistema.reportsDatabase.map(report => `
                 <div style="background: #ffffff; border: 1px solid #e0e0e0; border-radius: 6px; padding: 20px; margin: 10px 0;">
                     <h4 style="color: #0066cc; margin-bottom: 10px;">
-                        ðŸ“Š Informe MÃ©dico - ${new Date(report.date).toLocaleDateString()}
+                        📋 Informe Médico - ${new Date(report.date).toLocaleDateString()}
                     </h4>
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
                         <div>
@@ -1837,7 +1837,7 @@ function displayReports() {
                             <strong>Llamadas Hoy:</strong> ${report.data.callsToday}
                         </div>
                         <div>
-                            <strong>Tasa ConfirmaciÃ³n:</strong> ${report.data.confirmationRate}%
+                            <strong>Tasa Confirmación:</strong> ${report.data.confirmationRate}%
                         </div>
                         <div>
                             <strong>Especialidades Top:</strong> 
@@ -1864,16 +1864,16 @@ function exportReport() {
 }
 
 function clearAllReports() {
-    if (confirm('Â¿EstÃ¡ seguro de que desea eliminar todos los informes?')) {
+    if (confirm('¿Está seguro de que desea eliminar todos los informes?')) {
         carolinaSistema.reportsDatabase = [];
         carolinaSistema.saveDatabaseToStorage();
         displayReports();
     }
 }
 
-// === INICIALIZACIÃ“N ===
+// === INICIALIZACIÃN ===
 document.addEventListener('DOMContentLoaded', function () {
-    console.log('ðŸ¥ Inicializando Sistema Carolina Colsanitas...');
+    console.log('🏥 Inicializando Sistema Carolina Colsanitas...');
     initializeCarolinaSystem();
 
     // Cargar datos iniciales
