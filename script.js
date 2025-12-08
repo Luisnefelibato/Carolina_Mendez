@@ -562,31 +562,23 @@ class CarolinaFloridaMedicalSystem {
         optimized = optimized.replace(/\bSra\./g, 'señora');
         optimized = optimized.replace(/\bSrta\./g, 'señorita');
 
-        // Convertir signos de puntuación a palabras explícitas
-        // Puntos y comas (solo en contextos donde sea necesario)
-        optimized = optimized.replace(/\.\s+/g, ' punto ');
-        optimized = optimized.replace(/,\s+/g, ' coma ');
-        optimized = optimized.replace(/;\s+/g, ' punto y coma ');
-        optimized = optimized.replace(/:\s+/g, ' dos puntos ');
-
-        // Signos de interrogación y exclamación
-        optimized = optimized.replace(/\?/g, ' signo de interrogación ');
-        optimized = optimized.replace(/!/g, ' signo de exclamación ');
-
-        // Guiones y rayas
-        optimized = optimized.replace(/-\s+/g, ' guion ');
-        optimized = optimized.replace(/\s+-/g, ' guion ');
-        optimized = optimized.replace(/✅/g, ' raya ');
-
-        // Paréntesis (convertir contenido)
-        optimized = optimized.replace(/\(([^)]+)\)/g, ' entre paréntesis $1 cierra paréntesis ');
-
-        // Corchetes
-        optimized = optimized.replace(/\[([^\]]+)\]/g, ' entre corchetes $1 cierra corchetes ');
-
-        // Comillas
-        optimized = optimized.replace(/"([^"]+)"/g, ' comillas $1 cierra comillas ');
-        optimized = optimized.replace(/'([^']+)'/g, ' comillas $1 cierra comillas ');
+        // 🚨 NO CONVERTIR PUNTUACIÓN A PALABRAS - ELEVENLABS LO MANEJA NATURALMENTE
+        // Las líneas siguientes fueron comentadas porque causaban que Carolina dijera "punto", "coma", etc.
+        // ElevenLabs maneja la puntuación de forma natural sin necesidad de convertirla a palabras
+        
+        // optimized = optimized.replace(/\.\s+/g, ' punto ');
+        // optimized = optimized.replace(/,\s+/g, ' coma ');
+        // optimized = optimized.replace(/;\s+/g, ' punto y coma ');
+        // optimized = optimized.replace(/:\s+/g, ' dos puntos ');
+        // optimized = optimized.replace(/\?/g, ' signo de interrogación ');
+        // optimized = optimized.replace(/!/g, ' signo de exclamación ');
+        // optimized = optimized.replace(/-\s+/g, ' guion ');
+        // optimized = optimized.replace(/\s+-/g, ' guion ');
+        // optimized = optimized.replace(/✅/g, ' raya ');
+        // optimized = optimized.replace(/\(([^)]+)\)/g, ' entre paréntesis $1 cierra paréntesis ');
+        // optimized = optimized.replace(/\[([^\]]+)\]/g, ' entre corchetes $1 cierra corchetes ');
+        // optimized = optimized.replace(/"([^"]+)"/g, ' comillas $1 cierra comillas ');
+        // optimized = optimized.replace(/'([^']+)'/g, ' comillas $1 cierra comillas ');
 
         // Porcentajes
         optimized = optimized.replace(/(\d+)%/g, '$1 por ciento');
