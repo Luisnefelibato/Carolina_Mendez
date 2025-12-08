@@ -11,9 +11,12 @@
     
     const config = {
         // Obtener de variables de entorno de Vercel o usar valores por defecto
+        // 🚨 URGENTE: La API key anterior fue bloqueada por Google
+        // Obtén una nueva en: https://aistudio.google.com/app/apikey
+        // Lee API_KEY_FIX_URGENTE.md para instrucciones completas
         GEMINI_API_KEY: typeof process !== 'undefined' && process.env && process.env.VITE_GEMINI_API_KEY 
             ? process.env.VITE_GEMINI_API_KEY 
-            : 'AIzaSyBfhuPrpR8GsfoQG79L29MOY_kpITVRt_M',
+            : 'YOUR_NEW_GEMINI_API_KEY_HERE',  // ⚠️ REEMPLAZA CON TU NUEVA API KEY
             
         ELEVENLABS_API_KEY: typeof process !== 'undefined' && process.env && process.env.VITE_ELEVENLABS_API_KEY
             ? process.env.VITE_ELEVENLABS_API_KEY
