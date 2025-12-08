@@ -1,388 +1,409 @@
-# 🏥 Carolina Méndez - Sistema de Llamadas Médicas IA
+# 🏥 Carolina - Florida Medical Center AI Assistant
 
-Sistema de inteligencia artificial avanzado para gestión de citas médicas con reconocimiento de voz y síntesis de voz natural.
+Advanced AI-powered medical appointment management system with voice recognition and natural voice synthesis.
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FLuisnefelibato%2FCarolina_Mendez)
 
-## 🚀 Características Principales
+## 🚀 Key Features
 
-- **🎤 Reconocimiento de Voz**: Interfaz de voz bidireccional con reconocimiento en tiempo real (Web Speech API)
-- **🗣️ Síntesis de Voz Natural**: Respuestas de voz realistas usando ElevenLabs TTS
-- **🤖 IA Conversacional**: Integración con Google Gemini 2.5 Flash para respuestas inteligentes
-- **📅 Gestión de Citas**: Sistema completo para confirmación, citas prioritarias y urgencias médicas
-- **💾 Base de Datos CRM**: Sistema integrado para gestión de pacientes y reportes
-- **⚡ 3 Modos de Servicio**: Confirmación, Prioritaria, Urgencia
+- **🎤 Voice Recognition**: Bidirectional voice interface with real-time recognition (Web Speech API)
+- **🗣️ Natural Voice Synthesis**: Realistic voice responses using ElevenLabs TTS
+- **🤖 Conversational AI**: Integration with Google Gemini 2.5 Flash for intelligent responses
+- **📅 Appointment Management**: Complete system for confirmation, priority appointments, and medical emergencies
+- **💾 CRM Database**: Integrated system for patient management and reports
+- **⚡ 3 Service Modes**: Confirmation, Priority, Emergency
 
-## 🎯 Casos de Uso
+## 🎯 Use Cases
 
-- ✅ Confirmación de citas médicas programadas
-- ⚡ Gestión de citas prioritarias (dentro de 24-48 horas)
-- 🚨 Coordinación de urgencias médicas inmediatas
-- 📊 Análisis de datos y reportes de gestión
-- 👥 CRM de pacientes integrado
+- ✅ Medical appointment confirmation
+- ⚡ Priority appointment management (within 24-48 hours)
+- 🚨 Immediate medical emergency coordination
+- 📊 Data analytics and management reports
+- 👥 Integrated patient CRM
+
+## 🏥 Florida Medical Center Network
+
+Our system serves the **Florida Medical Center** network across:
+
+- 🌴 **Miami** - Main Emergency Center (Level 1 Trauma)
+- 🎢 **Orlando** - Pediatric Emergency Specialty
+- ⚡ **Tampa** - Cardiac Emergency Center
+- 🏖️ **Jacksonville** - Stroke Center
+- 🌊 **Fort Lauderdale** - Urgent Care
+
+**Database includes:**
+- 30+ specialized doctors across all locations
+- Emergency rooms and urgent care centers
+- US phone numbers and Florida addresses
+- 24/7 emergency services
 
 ---
 
-## 📋 Requisitos Previos
+## 📋 Prerequisites
 
-### APIs Necesarias:
+### Required APIs:
 
-1. **Google Gemini API** (GRATIS)
-   - Obtén tu API key en: https://makersuite.google.com/app/apikey
-   - Límite gratuito: 60 peticiones/minuto
+1. **Google Gemini API** (FREE)
+   - Get your API key at: https://makersuite.google.com/app/apikey
+   - Free limit: 60 requests/minute
 
-2. **ElevenLabs API** (GRATIS con límites)
-   - Obtén tu API key en: https://elevenlabs.io/app/settings
-   - Plan gratuito: 10,000 caracteres/mes
+2. **ElevenLabs API** (FREE with limits)
+   - Get your API key at: https://elevenlabs.io/app/settings
+   - Free plan: 10,000 characters/month
 
-### Navegador Compatible:
-- Chrome/Edge (recomendado)
+### Compatible Browser:
+- Chrome/Edge (recommended)
 - Firefox
-- Safari (con limitaciones en reconocimiento de voz)
+- Safari (with voice recognition limitations)
 
 ---
 
-## 🚀 Despliegue Rápido en Vercel (5 minutos)
+## 🚀 Quick Deploy on Vercel (5 minutes)
 
-### Opción 1: Despliegue con un Click
+### ⚡ API Keys Already Configured!
 
-1. **Click en el botón de Deploy**:
+**Good news!** The API keys are already integrated in the code at `env-config.js`:
+- ✅ Gemini API Key configured
+- ✅ ElevenLabs API Key configured
+- ✅ ElevenLabs Voice ID configured
+
+**You don't need to configure environment variables manually!**
+
+### Option 1: One-Click Deploy (Easiest)
+
+1. **Click the Deploy Button**:
    [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FLuisnefelibato%2FCarolina_Mendez)
 
-2. **Configura las Variables de Entorno** en Vercel:
-   ```
-   VITE_GEMINI_API_KEY=tu_api_key_de_gemini
-   VITE_ELEVENLABS_API_KEY=tu_api_key_de_elevenlabs
-   VITE_ELEVENLABS_VOICE_ID=UNIruiz09F4kWYjRpOvy
-   ```
+2. **Set Project Name**: `florida-medical-center` (or any lowercase name)
 
-3. **Deploy** y listo! 🎉
+3. **Deploy** and you're done! 🎉
 
-### Opción 2: Despliegue Manual desde GitHub
+### Option 2: Manual Deploy from GitHub
 
-1. **Conecta tu repositorio a Vercel**:
-   - Ve a [Vercel Dashboard](https://vercel.com/dashboard)
-   - Click en "New Project"
-   - Importa el repositorio: `https://github.com/Luisnefelibato/Carolina_Mendez`
+1. **Connect your repository to Vercel**:
+   - Go to [Vercel Dashboard](https://vercel.com/dashboard)
+   - Click "New Project"
+   - Import repository: `https://github.com/Luisnefelibato/Carolina_Mendez`
 
-2. **Configuración del Proyecto**:
+2. **Project Configuration**:
    ```
    Framework Preset: Other
    Root Directory: ./
-   Build Command: (dejar vacío)
+   Build Command: (leave empty)
    Output Directory: .
-   Install Command: (dejar vacío)
+   Install Command: (leave empty)
    ```
 
-3. **Agrega Variables de Entorno**:
-   - Settings → Environment Variables
-   - Agregar las 3 variables necesarias (ver arriba)
+3. **Deploy** - No environment variables needed!
 
-4. **Deploy**:
-   - Click en "Deploy"
-   - Espera 30-60 segundos
-   - Tu app estará lista en: `https://tu-proyecto.vercel.app`
+### Post-Deployment Verification
+
+After deployment, open your Vercel URL and:
+
+1. **Check Browser Console (F12):**
+   ```
+   🚀 Initializing Florida Medical Center AI System...
+   ✅ Gemini API Key configured: AIza...t_M
+   ✅ ElevenLabs API Key configured: 2ee1...1304
+   ✅ ElevenLabs Voice ID configured: UNIr...pOvy
+   ✅ System initialized successfully
+   ```
+
+2. **Test the Interface:**
+   - Click "Start Call"
+   - Allow microphone access
+   - Carolina should greet you in English
+   - Verify transcription appears on screen
 
 ---
 
-## 🔧 Configuración de Variables de Entorno
+## 🏥 US Healthcare System Compliance
 
-### Para Desarrollo Local:
+### ESI 5-Level Triage System (Coming Soon)
 
-1. Copia el archivo de ejemplo:
-   ```bash
-   cp .env.example .env
-   ```
+Carolina is designed to integrate with the Emergency Severity Index (ESI) used in US hospitals:
 
-2. Edita `.env` con tus API keys reales:
-   ```env
-   VITE_GEMINI_API_KEY=AIzaSy...tu_api_key_real
-   VITE_ELEVENLABS_API_KEY=sk_...tu_api_key_real
-   VITE_ELEVENLABS_VOICE_ID=UNIruiz09F4kWYjRpOvy
-   ```
+- **ESI-1** (Resuscitation): Immediate, life-threatening → 911
+- **ESI-2** (Emergency): High risk → ER within 15 min
+- **ESI-3** (Urgent): Moderate risk → Urgent Care within 24h
+- **ESI-4** (Semi-Urgent): Low risk → Primary Care within 7 days
+- **ESI-5** (Routine): Non-urgent → Regular appointment within 30 days
 
-### Para Producción (Vercel):
+### CMS 2025 Standards
 
-1. Ve a tu proyecto en Vercel Dashboard
-2. Settings → Environment Variables
-3. Agrega cada variable:
+The system is prepared to comply with CMS appointment wait time standards:
+- Emergency: IMMEDIATE
+- Urgent Care: 24 hours
+- Sick Care: 7 days
+- Routine Care: 30 days
 
-| Variable | Descripción | Ejemplo |
-|----------|-------------|---------|
-| `VITE_GEMINI_API_KEY` | API Key de Google Gemini | `AIzaSyC...` |
-| `VITE_ELEVENLABS_API_KEY` | API Key de ElevenLabs | `sk_abc123...` |
-| `VITE_ELEVENLABS_VOICE_ID` | ID de voz (opcional) | `UNIruiz09F4kWYjRpOvy` |
+### HIPAA Compliance Ready
 
-4. Redeploy el proyecto para aplicar cambios
+Documentation available for HIPAA compliance implementation:
+- See `ANALISIS_FLORIDA_HEALTHCARE.md` for detailed US healthcare analysis
+- Security guidelines included
+- Patient data protection protocols
 
 ---
 
-## 📁 Estructura del Proyecto
+## 📁 Project Structure
 
 ```
-carolina-mendez/
-├── index.html                      # Página principal de la app
-├── styles.css                      # Estilos CSS personalizados
-├── script.js                       # Lógica JavaScript principal (2000+ líneas)
-├── config.js                       # Configuración de variables de entorno
-├── vercel.json                     # Configuración de Vercel
-├── .env.example                    # Ejemplo de variables de entorno
-├── .gitignore                      # Archivos ignorados por Git
-├── README.md                       # Este archivo
-├── ANALISIS_FLORIDA_HEALTHCARE.md  # Análisis detallado del sistema de Florida
-└── package.json                    # Metadata del proyecto
+florida-medical-center/
+├── index.html              # Main UI interface
+├── script.js               # AI system logic
+├── styles.css              # Styling
+├── config.js               # Configuration loader
+├── env-config.js           # API keys (integrated)
+├── vercel.json             # Vercel deployment config
+├── README.md               # This file
+└── ANALISIS_FLORIDA_HEALTHCARE.md  # US healthcare analysis
 ```
 
 ---
 
-## 🛠️ Desarrollo Local
+## 🧪 Local Development
 
-### Método 1: Servidor Simple (Recomendado)
-
+### 1. Clone the Repository
 ```bash
-# 1. Clona el repositorio
 git clone https://github.com/Luisnefelibato/Carolina_Mendez.git
 cd Carolina_Mendez
+```
 
-# 2. Configura variables de entorno
-cp .env.example .env
-# Edita .env con tus API keys
-
-# 3. Inicia un servidor local
-# Con Python 3:
+### 2. Serve Locally
+```bash
+# Option 1: Python HTTP Server
 python -m http.server 8000
 
-# O con Python 2:
-python -m SimpleHTTPServer 8000
-
-# O con Node.js:
+# Option 2: Node.js HTTP Server
 npx http-server -p 8000
 
-# 4. Abre en tu navegador
-# http://localhost:8000
+# Option 3: PHP Built-in Server
+php -S localhost:8000
 ```
 
-### Método 2: Abrir directamente (Solo para testing)
+### 3. Open in Browser
+```
+http://localhost:8000
+```
 
-```bash
-# Abre index.html directamente en el navegador
-# NOTA: Algunas funciones pueden no funcionar por CORS
-open index.html  # macOS
-start index.html # Windows
-xdg-open index.html # Linux
+### 4. Test the System
+- Click "Start Call"
+- Allow microphone access
+- Speak to test voice recognition
+- Verify Carolina responds with voice
+
+---
+
+## 🎨 Service Modes
+
+### 1. 🏥 Appointment Confirmation
+- Verify existing appointments
+- Confirm dates, times, and specialists
+- Provide preparation information
+- Send reminders
+- Solve confirmation issues
+
+### 2. ⚡ Priority Appointment
+- Assess medical urgency
+- Coordinate priority appointments (within 24-48h)
+- Manage fast rescheduling
+- Contact specialists directly
+- Provide immediate alternatives
+
+### 3. 🚨 Medical Emergency
+- Activate emergency protocols IMMEDIATELY
+- Coordinate immediate care (within 30 minutes)
+- Direct to nearest 24h medical center
+- Provide emergency reference codes
+- Manage walk-in care without appointment
+
+---
+
+## 💰 Cost Estimates
+
+### Free Tier (Development/Demo)
+- **Google Gemini**: 1,500 requests/day FREE
+- **ElevenLabs**: 10,000 characters/month FREE
+- **Vercel**: Free hosting
+- **TOTAL: $0/month** ✅
+
+### Production (~2000 users/month)
+- **Gemini API**: ~$5/month
+- **ElevenLabs Pro**: $22/month (100k chars)
+- **Vercel Pro**: $20/month (optional)
+- **TOTAL: ~$27-47/month**
+
+---
+
+## 🔧 Technologies Used
+
+### Frontend
+- HTML5 + CSS3
+- JavaScript (ES6+)
+- Web Speech API (voice recognition)
+- Font Awesome Icons
+
+### AI & Voice
+- **Google Gemini 2.5 Flash**: Conversational AI
+- **ElevenLabs Multilingual v2**: Voice synthesis
+- **Web Speech API**: Voice recognition
+
+### Hosting & Deployment
+- **Vercel**: CDN + Edge hosting
+- **GitHub**: Version control
+
+---
+
+## 📊 System Architecture
+
+```
+┌─────────────────┐
+│   Patient/User  │
+└────────┬────────┘
+         │ Voice Input
+         ▼
+┌─────────────────┐
+│  Web Speech API │ (Voice Recognition)
+└────────┬────────┘
+         │ Text
+         ▼
+┌─────────────────┐
+│ Carolina System │ (Logic & Routing)
+└────────┬────────┘
+         │ Context + History
+         ▼
+┌─────────────────┐
+│  Gemini 2.5 AI  │ (Response Generation)
+└────────┬────────┘
+         │ Text Response
+         ▼
+┌─────────────────┐
+│  ElevenLabs TTS │ (Voice Synthesis)
+└────────┬────────┘
+         │ Audio
+         ▼
+┌─────────────────┐
+│   Patient/User  │ (Hears Response)
+└─────────────────┘
 ```
 
 ---
 
-## 🎨 Funcionalidades Detalladas
+## 🔐 Security & Privacy
 
-### 1️⃣ Sistema de Llamadas IA
+### Data Protection
+- No patient data stored on external servers
+- Local browser storage only (localStorage)
+- HIPAA-compliant architecture ready
+- Secure API communication (HTTPS)
 
-- **Inicio de llamada**: Click en "Iniciar Llamada"
-- **Reconocimiento automático**: La IA escucha cuando hablas
-- **Respuesta inteligente**: Gemini procesa y genera respuesta
-- **Síntesis de voz**: ElevenLabs convierte texto a voz natural
-- **Conversación fluida**: Turnos automáticos Carolina ↔ Paciente
+### API Keys
+- Already configured in `env-config.js`
+- Loaded dynamically at runtime
+- Can be replaced for production deployments
 
-### 2️⃣ Tres Modos de Servicio
-
-#### 📅 Confirmación de Citas (por defecto)
-- Verificación de citas existentes
-- Confirmación de fecha y hora
-- Información de preparativos
-- Recordatorios automáticos
-
-#### ⚡ Cita Prioritaria
-- Atención dentro de 24-48 horas
-- Horarios prioritarios (mañanas)
-- Gestión rápida de reprogramación
-- Seguimiento inmediato
-
-#### 🚨 Urgencia Médica
-- Atención INMEDIATA
-- Direccionamiento a centro más cercano
-- Código de urgencia único
-- Protocolo de emergencia activado
-
-### 3️⃣ Base de Datos CRM
-
-- **Gestión de Pacientes**: Registro completo con datos médicos
-- **Búsqueda Inteligente**: Filtros por especialidad, ciudad, estado
-- **Historial de Llamadas**: Todas las interacciones registradas
-- **Reportes Automáticos**: Analytics y métricas en tiempo real
+### Best Practices
+- Never commit `.env` files to Git
+- Use environment variables in production
+- Rotate API keys regularly
+- Monitor API usage and costs
 
 ---
 
-## 🔐 Seguridad y Privacidad
+## 🚀 Roadmap
 
-### Buenas Prácticas:
+### Phase 1: ✅ COMPLETED
+- [x] Voice recognition and synthesis
+- [x] AI conversational system
+- [x] 3 service modes (Confirmation, Priority, Emergency)
+- [x] Florida Medical Center branding
+- [x] US healthcare terminology
+- [x] Florida-based doctors and locations
+- [x] Vercel deployment ready
 
-✅ **DO (Hacer):**
-- Usar variables de entorno para API keys
-- Mantener `.env` en `.gitignore`
-- Rotar API keys regularmente
-- Usar HTTPS en producción (Vercel lo hace automático)
-- Limitar acceso a dashboard de administración
+### Phase 2: 🔄 IN PROGRESS
+- [ ] ESI 5-level triage implementation
+- [ ] CMS 2025 standards compliance
+- [ ] HIPAA compliance certification
+- [ ] Bilingual support (English + Spanish)
+- [ ] SMS/Email confirmation integration
 
-❌ **DON'T (No hacer):**
-- Subir API keys al repositorio
-- Compartir `.env` en Slack/Email
-- Hacer commit de secretos
-- Hardcodear API keys en el código
-- Usar HTTP en producción
-
-### HIPAA Compliance (para uso médico real):
-
-⚠️ **IMPORTANTE**: Este es un prototipo educativo. Para uso médico real en USA:
-- Implementar encriptación end-to-end
-- Usar base de datos HIPAA-compliant
-- Logging y auditoría completa
-- Consentimiento explícito del paciente
-- Plan de respuesta a incidentes
+### Phase 3: 📅 PLANNED
+- [ ] EHR integration (Epic, Cerner)
+- [ ] Insurance verification API
+- [ ] Telehealth appointment booking
+- [ ] Multi-location management
+- [ ] Advanced analytics dashboard
 
 ---
 
-## 🐛 Troubleshooting (Solución de Problemas)
+## 📚 Documentation
 
-### Problema: "API Key inválida"
-
-**Síntoma**: Error en consola: `Invalid API Key`
-
-**Solución**:
-1. Verifica que las variables de entorno estén correctas
-2. En Vercel: Settings → Environment Variables
-3. Asegúrate de usar el prefijo `VITE_`
-4. Redeploy después de cambiar variables
-
-### Problema: "Micrófono no funciona"
-
-**Síntoma**: No se activa el reconocimiento de voz
-
-**Solución**:
-1. Permite permisos de micrófono en el navegador
-2. Usa HTTPS (requerido para Web Speech API)
-3. Usa Chrome/Edge (mejor compatibilidad)
-4. Verifica que el micrófono funcione en otras apps
-
-### Problema: "Voz no se reproduce"
-
-**Síntoma**: La IA responde pero no habla
-
-**Solución**:
-1. Verifica tu API Key de ElevenLabs
-2. Revisa límite de caracteres (10,000/mes gratis)
-3. Aumenta volumen en la app
-4. Verifica consola del navegador para errores
-
-### Problema: "Respuestas lentas"
-
-**Síntoma**: La IA tarda mucho en responder
-
-**Solución**:
-1. Verifica conexión a internet
-2. El modelo Gemini 2.5 Flash es rápido (~800ms)
-3. ElevenLabs puede tardar ~2-3 segundos
-4. Revisa estadísticas de tiempo en la interfaz
+- **Deployment Guide**: `DEPLOYMENT_GUIDE.md`
+- **Florida Healthcare Analysis**: `ANALISIS_FLORIDA_HEALTHCARE.md`
+- **Character Encoding Fix**: `CHARACTER_ENCODING_FIXED.md`
+- **Deployment Success**: `DEPLOYMENT_SUCCESS.md`
 
 ---
 
-## 📊 Métricas y Analytics
+## 🤝 Contributing
 
-### KPIs Monitoreados:
+Contributions are welcome! Please:
 
-- **Tiempo de Respuesta IA**: ~800ms promedio (Gemini)
-- **Tasa de Confirmación**: % de citas confirmadas exitosamente
-- **Interacciones por Llamada**: Promedio de turnos de conversación
-- **Pacientes Activos**: Total en base de datos
-- **Llamadas por Día**: Volumen de uso diario
-
----
-
-## 🌍 Roadmap y Futuras Mejoras
-
-### ✅ Completado (v1.0):
-- [x] Sistema de reconocimiento de voz
-- [x] Integración con Gemini IA
-- [x] Síntesis de voz con ElevenLabs
-- [x] CRM básico de pacientes
-- [x] Tres modos de servicio
-- [x] Dashboard de estadísticas
-
-### 🚧 En Desarrollo (v1.1):
-- [ ] Sistema ESI de 5 niveles (Florida)
-- [ ] Triage telefónico estructurado
-- [ ] Base de datos de facilidades de Florida
-- [ ] Terminología en inglés/bilingüe
-- [ ] Compliance con CMS standards
-
-### 💡 Futuras Versiones:
-- [ ] Integración con calendarios (Google Calendar)
-- [ ] SMS/Email automáticos de recordatorios
-- [ ] Multi-idioma (Inglés, Español, Portugués)
-- [ ] App móvil (React Native)
-- [ ] Integración con EHR (Electronic Health Records)
-- [ ] Análisis predictivo de demanda
-- [ ] Chatbot de WhatsApp/Telegram
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
 ---
 
-## 🤝 Contribuciones
+## 📄 License
 
-### ¿Cómo Contribuir?
-
-1. Fork el repositorio
-2. Crea una rama: `git checkout -b feature/nueva-funcionalidad`
-3. Haz tus cambios y commit: `git commit -m "Agrega nueva funcionalidad"`
-4. Push a la rama: `git push origin feature/nueva-funcionalidad`
-5. Abre un Pull Request
-
-### Lineamientos:
-- Código limpio y comentado
-- Seguir estructura existente
-- Probar exhaustivamente antes de PR
-- Documentar cambios en README
+This project is licensed under the MIT License - see the LICENSE file for details.
 
 ---
 
-## 📞 Soporte y Contacto
+## 👏 Credits
 
-### Recursos Útiles:
-
-- **Documentación Gemini**: https://ai.google.dev/gemini-api/docs
-- **Documentación ElevenLabs**: https://docs.elevenlabs.io/
-- **Web Speech API**: https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API
-- **Vercel Docs**: https://vercel.com/docs
-
-### Reportar Bugs:
-
-Abre un issue en GitHub con:
-- Descripción del problema
-- Pasos para reproducir
-- Navegador y versión
-- Screenshots/logs de consola
+**Developed by**: Luisnefelibato  
+**Powered by**:
+- Google Gemini 2.5 Flash (AI)
+- ElevenLabs (Voice Synthesis)
+- Vercel (Hosting)
 
 ---
 
-## 📄 Licencia
+## 📞 Support
 
-Copyright © 2025 Carolina Méndez System. Todos los derechos reservados.
+Need help?
 
-Este es un proyecto privado desarrollado para fines educativos y comerciales.
-
----
-
-## 🌟 Créditos
-
-**Desarrollado con:**
-- 🤖 Google Gemini 2.5 Flash (IA Conversacional)
-- 🗣️ ElevenLabs Multilingual v2 (Text-to-Speech)
-- 🎤 Web Speech API (Speech Recognition)
-- ⚡ Vercel (Hosting y Deploy)
-- 🎨 Font Awesome (Iconos)
-
-**Powered by AI** 🚀
+1. **Check the documentation** in the repository
+2. **Open an issue** on GitHub
+3. **Contact the developer**: [GitHub Profile](https://github.com/Luisnefelibato)
 
 ---
 
-**¿Te gusta el proyecto? Dale una ⭐ en GitHub!**
+## 🏥 About Florida Medical Center
 
+**Florida Medical Center** is a network of advanced medical facilities serving the state of Florida with:
+
+- 🏥 5 major locations across Florida
+- 👨‍⚕️ 30+ specialized physicians
+- 🚨 24/7 emergency services
+- ⚡ Priority care and urgent care centers
+- 🎯 Commitment to patient-centered care
+
+**Emergency Hotline**: Call 911 for life-threatening emergencies
+
+---
+
+**🎉 Ready to deploy? Click the button below!**
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FLuisnefelibato%2FCarolina_Mendez)
+
+---
+
+*Last updated: December 8, 2025*  
+*Version: 2.0.0 - Florida Medical Center Edition*
