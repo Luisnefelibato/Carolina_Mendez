@@ -1,5 +1,5 @@
-// === SISTEMA IA CAROLINA COLSANITAS ===
-class CarolinaColsanitasSistema {
+// === FLORIDA MEDICAL CENTER AI SYSTEM ===
+class CarolinaFloridaMedicalSystem {
 
     constructor() {
         // APIs - CONFIGURACIÓN desde variables de entorno
@@ -92,41 +92,41 @@ class CarolinaColsanitasSistema {
         console.log('⚠Sistema Carolina inicializado correctamente');
     }
 
-    // === BASE DE DATOS SIMULADA ===
+    // === DATABASE - FLORIDA MEDICAL CENTER ===
     initializeSimulatedDatabase() {
-        // Doctores por especialidad
+        // Doctors by specialty (Florida Medical Center network)
         this.doctorsDatabase = {
             'odontologia': [
-                { name: 'Dr. Carlos Ramírez', clinic: 'Clínica Colsanitas Calle 127', phone: '601-345-6789' },
-                { name: 'Dra. María González', clinic: 'Clínica Colsanitas Centro', phone: '601-234-5678' },
-                { name: 'Dr. Andrés Martínez', clinic: 'Clínica Colsanitas Norte', phone: '601-456-7890' },
-                { name: 'Dra. Laura Sánchez', clinic: 'Clínica Colsanitas Sur', phone: '601-567-8901' }
+                { name: 'Dr. James Mitchell', clinic: 'Florida Medical Center - Miami', phone: '305-555-0100' },
+                { name: 'Dr. Sarah Johnson', clinic: 'Florida Medical Center - Orlando', phone: '407-555-0100' },
+                { name: 'Dr. Michael Chen', clinic: 'Florida Medical Center - Tampa', phone: '813-555-0100' },
+                { name: 'Dr. Emily Rodriguez', clinic: 'Florida Medical Center - Jacksonville', phone: '904-555-0100' }
             ],
             'cardiologia': [
-                { name: 'Dr. Roberto Fernández', clinic: 'Clínica Colsanitas Calle 127', phone: '601-345-6789' },
-                { name: 'Dra. Ana Torres', clinic: 'Clínica Colsanitas Centro', phone: '601-234-5678' },
-                { name: 'Dr. Juan Pérez', clinic: 'Clínica Colsanitas Norte', phone: '601-456-7890' }
+                { name: 'Dr. Robert Anderson', clinic: 'Florida Medical Center - Miami', phone: '305-555-0200' },
+                { name: 'Dr. Jennifer Williams', clinic: 'Florida Medical Center - Orlando', phone: '407-555-0200' },
+                { name: 'Dr. David Martinez', clinic: 'Florida Medical Center - Tampa', phone: '813-555-0200' }
             ],
             'medicina_general': [
-                { name: 'Dr. Pedro López', clinic: 'Clínica Colsanitas Calle 127', phone: '601-345-6789' },
-                { name: 'Dra. Carmen Díaz', clinic: 'Clínica Colsanitas Centro', phone: '601-234-5678' },
-                { name: 'Dr. Miguel Rodríguez', clinic: 'Clínica Colsanitas Norte', phone: '601-456-7890' }
+                { name: 'Dr. Lisa Thompson', clinic: 'Florida Medical Center - Miami', phone: '305-555-0300' },
+                { name: 'Dr. Kevin Brown', clinic: 'Florida Medical Center - Orlando', phone: '407-555-0300' },
+                { name: 'Dr. Amanda Garcia', clinic: 'Florida Medical Center - Tampa', phone: '813-555-0300' }
             ],
             'pediatria': [
-                { name: 'Dra. Sofía Morales', clinic: 'Clínica Colsanitas Calle 127', phone: '601-345-6789' },
-                { name: 'Dr. Diego Herrera', clinic: 'Clínica Colsanitas Centro', phone: '601-234-5678' }
+                { name: 'Dr. Maria Santos', clinic: 'Florida Medical Center - Miami', phone: '305-555-0400' },
+                { name: 'Dr. Christopher Lee', clinic: 'Florida Medical Center - Orlando', phone: '407-555-0400' }
             ],
             'ginecologia': [
-                { name: 'Dra. Patricia Vega', clinic: 'Clínica Colsanitas Calle 127', phone: '601-345-6789' },
-                { name: 'Dra. Isabel Castro', clinic: 'Clínica Colsanitas Centro', phone: '601-234-5678' }
+                { name: 'Dr. Patricia Davis', clinic: 'Florida Medical Center - Miami', phone: '305-555-0500' },
+                { name: 'Dr. Rachel Green', clinic: 'Florida Medical Center - Tampa', phone: '813-555-0500' }
             ],
             'dermatologia': [
-                { name: 'Dr. Fernando Ruiz', clinic: 'Clínica Colsanitas Calle 127', phone: '601-345-6789' },
-                { name: 'Dra. Claudia Moreno', clinic: 'Clínica Colsanitas Norte', phone: '601-456-7890' }
+                { name: 'Dr. Steven Wilson', clinic: 'Florida Medical Center - Miami', phone: '305-555-0600' },
+                { name: 'Dr. Nicole Martinez', clinic: 'Florida Medical Center - Orlando', phone: '407-555-0600' }
             ],
             'ortopedia': [
-                { name: 'Dr. Jorge Silva', clinic: 'Clínica Colsanitas Calle 127', phone: '601-345-6789' },
-                { name: 'Dr. Ricardo Vargas', clinic: 'Clínica Colsanitas Centro', phone: '601-234-5678' }
+                { name: 'Dr. Thomas Robinson', clinic: 'Florida Medical Center - Miami', phone: '305-555-0700' },
+                { name: 'Dr. Daniel Taylor', clinic: 'Florida Medical Center - Tampa', phone: '813-555-0700' }
             ]
         };
 
@@ -143,39 +143,47 @@ class CarolinaColsanitasSistema {
             '10:00 AM', '10:30 AM', '11:00 AM', '1:00 PM', '1:30 PM', '2:00 PM'
         ];
 
-        // Clínicas de urgencias con información completa
+        // Emergency Clinics and Urgent Care Centers - Florida Medical Center network
         this.emergencyClinics = [
             {
-                name: 'Clínica Colsanitas Calle 127',
-                address: 'Calle 127 # 7-32, Bogotá',
-                phone: '601-345-6789',
-                emergencyPhone: '601-345-6790',
+                name: 'Florida Medical Center - Miami Emergency',
+                address: '1500 NW 12th Ave, Miami, FL 33136',
+                phone: '305-555-1000',
+                emergencyPhone: '305-555-1911',
                 open24h: true,
-                specialties: ['Todas las especialidades']
+                specialties: ['All specialties', 'Level 1 Trauma Center']
             },
             {
-                name: 'Clínica Colsanitas Centro',
-                address: 'Carrera 7 # 32-16, Bogotá',
-                phone: '601-234-5678',
-                emergencyPhone: '601-234-5679',
+                name: 'Florida Medical Center - Orlando Emergency',
+                address: '6535 Nemours Parkway, Orlando, FL 32827',
+                phone: '407-555-2000',
+                emergencyPhone: '407-555-2911',
                 open24h: true,
-                specialties: ['Todas las especialidades']
+                specialties: ['All specialties', 'Pediatric Emergency']
             },
             {
-                name: 'Clínica Colsanitas Norte',
-                address: 'Avenida 68 # 49-47, Bogotá',
-                phone: '601-456-7890',
-                emergencyPhone: '601-456-7891',
+                name: 'Florida Medical Center - Tampa Emergency',
+                address: '2 Tampa General Circle, Tampa, FL 33606',
+                phone: '813-555-3000',
+                emergencyPhone: '813-555-3911',
                 open24h: true,
-                specialties: ['Todas las especialidades']
+                specialties: ['All specialties', 'Cardiac Emergency']
             },
             {
-                name: 'Clínica Colsanitas Sur',
-                address: 'Calle 13 Sur # 4-47, Bogotá',
-                phone: '601-567-8901',
-                emergencyPhone: '601-567-8902',
+                name: 'Florida Medical Center - Jacksonville ER',
+                address: '655 W 8th St, Jacksonville, FL 32209',
+                phone: '904-555-4000',
+                emergencyPhone: '904-555-4911',
                 open24h: true,
-                specialties: ['Todas las especialidades']
+                specialties: ['All specialties', 'Stroke Center']
+            },
+            {
+                name: 'Florida Medical Center - Fort Lauderdale Urgent Care',
+                address: '1600 S Andrews Ave, Fort Lauderdale, FL 33316',
+                phone: '954-555-5000',
+                emergencyPhone: '954-555-5911',
+                open24h: false,
+                specialties: ['Urgent Care', 'Minor Injuries', 'Illness']
             }
         ];
     }
@@ -362,26 +370,26 @@ class CarolinaColsanitasSistema {
     getWelcomeMessage() {
         switch (this.currentServiceType) {
             case 'confirmacion':
-                return '🏥 Carolina lista para confirmar sus citas - Departamento Colsánitas';
+                return '🏥 Carolina ready to assist - Florida Medical Center';
             case 'prioritaria':
-                return '⚡ Atención Prioritaria activada - Carolina gestionando citas urgentes';
+                return '⚡ Priority Care activated - Carolina managing urgent appointments';
             case 'urgencia':
-                return '🚨 Protocolo de Urgencias - Carolina coordinando atención inmediata';
+                return '🚨 Emergency Protocol - Carolina coordinating immediate care';
             default:
-                return '🏥 Carolina lista para confirmar sus citas - Departamento Colsánitas';
+                return '🏥 Carolina ready to assist - Florida Medical Center';
         }
     }
 
     getInitialGreeting() {
         switch (this.currentServiceType) {
             case 'confirmacion':
-                return 'Buenos días, habla Carolina Méndez del departamento de confirmaciones de Colsánitas. ¿En qué puedo ayudarle con su cita médica?';
+                return 'Good morning, this is Carolina from Florida Medical Center appointment confirmation department. How can I help you with your medical appointment today?';
             case 'prioritaria':
-                return 'Buenos días, habla Carolina Méndez del departamento de atención prioritaria de Colsánitas. Entiendo que necesita una cita con urgencia. Por favor, cuénteme qué especialidad necesita y su situación para coordinarle la atención lo antes posible.';
+                return 'Good morning, this is Carolina from Florida Medical Center priority care department. I understand you need an urgent appointment. Please tell me what specialty you need and your situation so I can coordinate your care as soon as possible.';
             case 'urgencia':
-                return 'Buenos días, habla Carolina Méndez, protocolo de urgencias de Colsánitas. Estoy aquí para coordinar su atención médica inmediata. Por favor, indíqueme su nombre, número de documento y su ubicación actual para dirigirle al centro más cercano.';
+                return 'Good morning, this is Carolina from Florida Medical Center emergency protocol. I am here to coordinate your immediate medical care. Please provide your name, insurance ID, and your current location so I can direct you to the nearest facility.';
             default:
-                return 'Buenos días, habla Carolina Méndez del departamento de confirmaciones de Colsánitas. ¿En qué puedo ayudarle con su cita médica?';
+                return 'Good morning, this is Carolina from Florida Medical Center appointment confirmation department. How can I help you with your medical appointment today?';
         }
     }
 
@@ -505,7 +513,7 @@ class CarolinaColsanitasSistema {
             return `el ${this.numberToSpanishWords(parseInt(day))} del ${this.numberToSpanishWords(parseInt(month))} del ${this.numberToSpanishWords(parseInt(year))}`;
         });
 
-        // Números de cédula y teléfonos (decirlos dígito por dígito)
+        // Números de insurance ID y teléfonos (decirlos dígito por dígito)
         optimized = optimized.replace(/(\d{8,11})/g, (match, number) => {
             return number.split('').map(d => this.numberToSpanishWords(parseInt(d))).join(' ');
         });
@@ -703,7 +711,7 @@ class CarolinaColsanitasSistema {
 
             const currentText = this.finalTranscript + this.interimTranscript;
             if (currentText.trim()) {
-                this.transcript.textContent = `📋¤ "${currentText.trim()}"`;
+                this.transcript.textContent = "Florida Medical Center - AI-powered appointment system 🏥";
             }
 
             clearTimeout(this.silenceTimer);
@@ -893,13 +901,13 @@ class CarolinaColsanitasSistema {
         let specialty = null;
         let dayOfWeek = null;
 
-        // Buscar nombre y documento en el historial y mensaje actual
+        // Buscar nombre y ID en el historial y mensaje actual
         const allMessages = conversationHistory.map(m => m.message).join(' ') + ' ' + userMessage;
         const fullText = allMessages.toLowerCase();
 
-        // Extraer número de documento (formato colombiano: 8-11 dígitos, puede tener espacios)
+        // Extraer número de ID (formato colombiano: 8-11 dígitos, puede tener espacios)
         const docPatterns = [
-            /(?:documento|cedula|cédula|identificación|identificacion|numero|número)[\s:]*(\d{1,3}(?:\s?\d{3}){2,3})/i,
+            /(?:ID|insurance ID|insurance ID|identificación|identificacion|numero|número)[\s:]*(\d{1,3}(?:\s?\d{3}){2,3})/i,
             /(\d{8,11})/g
         ];
 
@@ -998,9 +1006,9 @@ class CarolinaColsanitasSistema {
         const allMessages = conversationHistory.map(m => m.message).join(' ') + ' ' + userMessage;
         const fullText = allMessages.toLowerCase();
 
-        // Extraer número de documento
+        // Extraer número de ID
         // Primero intentar con patrón específico (con grupos)
-        const specificDocPattern = /(?:documento|cedula|cédula|identificación|identificacion|numero|número)[\s:]*(\d{1,3}(?:\s?\d{3}){2,3})/i;
+        const specificDocPattern = /(?:ID|insurance ID|insurance ID|identificación|identificacion|numero|número)[\s:]*(\d{1,3}(?:\s?\d{3}){2,3})/i;
         const specificMatch = allMessages.match(specificDocPattern);
         if (specificMatch && specificMatch[1]) {
             documentNumber = specificMatch[1].replace(/\s/g, '');
@@ -1097,7 +1105,7 @@ class CarolinaColsanitasSistema {
             if (emergencyInfo) {
                 appointmentContext = `\n\nINFORMACIÃN DE URGENCIA MÃDICA (usa estos datos exactos):
 - Nombre del paciente: ${emergencyInfo.patientName}
-- Número de documento: ${emergencyInfo.documentNumber}
+- Número de ID: ${emergencyInfo.documentNumber}
 - Código de urgencia: ${emergencyInfo.emergencyCode}
 - Clínica asignada: ${emergencyInfo.clinic}
 - Dirección: ${emergencyInfo.address}
@@ -1113,7 +1121,7 @@ IMPORTANTE: Proporciona TODA esta información de forma clara y urgente. El paci
             if (appointmentInfo) {
                 appointmentContext = `\n\nINFORMACIÃN DE LA CITA DEL PACIENTE (usa estos datos exactos, NO uses placeholders):
 - Nombre del paciente: ${appointmentInfo.patientName}
-- Número de documento: ${appointmentInfo.documentNumber}
+- Número de ID: ${appointmentInfo.documentNumber}
 - Especialidad: ${appointmentInfo.specialty}
 - Doctor asignado: ${appointmentInfo.doctor}
 - Clínica: ${appointmentInfo.clinic}
@@ -1225,7 +1233,7 @@ Carolina:`
     }
 
     getMedicalSystemPrompt() {
-        const basePrompt = `Eres Carolina Méndez, especialista en confirmaciones de citas médicas de Colsánitas. Trabajas en el departamento de gestión de citas médicas y tu objetivo es ayudar a los pacientes con sus necesidades médicas.
+        const basePrompt = `Eres Carolina Méndez, especialista en confirmaciones de citas médicas de Florida Medical Center. Trabajas en el departamento de gestión de citas médicas y tu objetivo es ayudar a los pacientes con sus necesidades médicas.
 
 PROTOCOLO DE ATENCIÃN:
 1. Saluda profesionalmente SOLO en la primera interacción
@@ -1342,7 +1350,7 @@ Ejemplo de respuesta: "Entiendo su situación y no se preocupe, estamos aquí pa
     getFallbackMedicalResponse() {
         switch (this.currentServiceType) {
             case 'confirmacion':
-                return 'Disculpe, permítame verificar su información en el sistema. ¿Podría proporcionarme su número de cédula para confirmar su cita médica?';
+                return 'Disculpe, permítame verificar su información en el sistema. ¿Podría proporcionarme su número de insurance ID para confirmar su cita médica?';
             case 'prioritaria':
                 return 'Entiendo que necesita atención prioritaria. Permítame revisar la disponibilidad inmediata de especialistas. ¿Podría contarme brevemente cuál es su situación médica?';
             case 'urgencia':
@@ -1494,7 +1502,7 @@ Ejemplo de respuesta: "Entiendo su situación y no se preocupe, estamos aquí pa
 
         this.finalTranscript = '';
         this.interimTranscript = '';
-        this.transcript.textContent = 'Sistema médico optimizado para gestión de citas Colsánitas 🏥';
+        this.transcript.textContent = "Florida Medical Center - AI-powered appointment system 🏥";
 
         console.log('⚠Llamada médica finalizada');
     }
@@ -1604,8 +1612,8 @@ Ejemplo de respuesta: "Entiendo su situación y no se preocupe, estamos aquí pa
                 id: 1,
                 name: 'María González',
                 phone: '3001234567',
-                cedula: '1234567890',
-                city: 'Bogotá',
+                insurance ID: '1234567890',
+                city: 'Miami',
                 specialty: 'Cardiología',
                 lastAppointment: '2024-03-15',
                 status: 'confirmada'
@@ -1614,7 +1622,7 @@ Ejemplo de respuesta: "Entiendo su situación y no se preocupe, estamos aquí pa
                 id: 2,
                 name: 'Carlos Rodríguez',
                 phone: '3109876543',
-                cedula: '0987654321',
+                insurance ID: '0987654321',
                 city: 'Medellín',
                 specialty: 'Ortopedia',
                 lastAppointment: '2024-03-20',
@@ -1624,7 +1632,7 @@ Ejemplo de respuesta: "Entiendo su situación y no se preocupe, estamos aquí pa
                 id: 3,
                 name: 'Ana Martínez',
                 phone: '3157894561',
-                cedula: '1122334455',
+                insurance ID: '1122334455',
                 city: 'Cali',
                 specialty: 'Ginecología',
                 lastAppointment: '2024-03-18',
@@ -1641,7 +1649,7 @@ Ejemplo de respuesta: "Entiendo su situación y no se preocupe, estamos aquí pa
 let carolinaSistema;
 
 function initializeCarolinaSystem() {
-    carolinaSistema = new CarolinaColsanitasSistema();
+    carolinaSistema = new CarolinaFloridaMedicalSystem();
 }
 
 function changeServiceType(type) {
@@ -1707,7 +1715,7 @@ function displayPatientsList(patients, containerId) {
                 <div class="patient-card">
                     <div class="patient-name">${patient.name}</div>
                     <div class="patient-info">📋± ${patient.phone}</div>
-                    <div class="patient-info">📋 ${patient.cedula}</div>
+                    <div class="patient-info">📋 ${patient.insurance ID}</div>
                     <div class="patient-info">📋¥ ${patient.specialty}</div>
                     <div class="patient-info">📋 ${patient.city}</div>
                     <div class="patient-info">📋 Ãltima cita: ${patient.lastAppointment}</div>
@@ -1732,7 +1740,7 @@ function filterPatients() {
     const filteredPatients = carolinaSistema.patientsDatabase.filter(patient =>
         patient.name.toLowerCase().includes(searchTerm) ||
         patient.phone.includes(searchTerm) ||
-        patient.cedula.includes(searchTerm)
+        patient.insurance ID.includes(searchTerm)
     );
 
     displayPatientsList(filteredPatients, 'crmPatientsList');
@@ -1873,7 +1881,7 @@ function clearAllReports() {
 
 // === INICIALIZACIÃN ===
 document.addEventListener('DOMContentLoaded', function () {
-    console.log('🏥 Inicializando Sistema Carolina Colsanitas...');
+    console.log('🏥 Inicializando Sistema Carolina Florida Medical Center...');
     initializeCarolinaSystem();
 
     // Cargar datos iniciales

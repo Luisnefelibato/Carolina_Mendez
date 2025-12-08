@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carolina Méndez - Sistema Llamadas Médicas Colsanitas</title>
+    <title>Carolina - Florida Medical Center AI Assistant</title>
     <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -13,35 +13,35 @@
     <div class="container">
         <div class="vendor-header">
             <div class="vendor-avatar">🏥</div>
-            <h1 class="vendor-name">Carolina Méndez</h1>
-            <p class="vendor-title">Especialista en Confirmaciones de Citas Médicas</p>
-            <p class="vendor-tagline">Colsanitas - Departamento de Gestión de Citas</p>
+            <h1 class="vendor-name">Carolina</h1>
+            <p class="vendor-title">Medical Appointment Specialist</p>
+            <p class="vendor-tagline">Florida Medical Center - Appointment Management</p>
 
             <div class="service-type-buttons">
                 <button class="service-button active" onclick="changeServiceType('confirmacion')">
-                    <i class="fas fa-calendar-check"></i> Confirmación de Citas
+                    <i class="fas fa-calendar-check"></i> Appointment Confirmation
                 </button>
                 <button class="service-button" onclick="changeServiceType('prioritaria')">
-                    <i class="fas fa-clock"></i> Cita Prioritaria
+                    <i class="fas fa-clock"></i> Priority Appointment
                 </button>
                 <button class="service-button" onclick="changeServiceType('urgencia')">
-                    <i class="fas fa-exclamation-triangle"></i> Urgencia Médica
+                    <i class="fas fa-exclamation-triangle"></i> Medical Emergency
                 </button>
             </div>
         </div>
 
         <div class="main-tabs">
             <button class="tab-button active" onclick="switchTab('calls')">
-                <i class="fas fa-phone"></i> Llamadas
+                <i class="fas fa-phone"></i> Calls
             </button>
             <button class="tab-button" onclick="switchTab('search')">
-                <i class="fas fa-search"></i> Buscar Pacientes
+                <i class="fas fa-search"></i> Search Patients
             </button>
             <button class="tab-button" onclick="switchTab('crm')">
-                <i class="fas fa-database"></i> Base de Datos
+                <i class="fas fa-database"></i> Database
             </button>
             <button class="tab-button" onclick="switchTab('reports')">
-                <i class="fas fa-chart-line"></i> Informes Médicos
+                <i class="fas fa-chart-line"></i> Medical Reports
             </button>
         </div>
 
@@ -49,7 +49,7 @@
         <div id="calls" class="tab-content active">
             <div class="call-interface">
                 <div class="call-status waiting" id="callStatus">
-                    🏥 Carolina lista para confirmar sus citas - Departamento Colsanitas
+                    🏥 Carolina ready to assist - Florida Medical Center
                     <span class="microphone-indicator" id="micIndicator"></span>
                 </div>
 
@@ -58,33 +58,33 @@
                 </div>
 
                 <div class="real-time-transcript" id="transcript">
-                    Sistema médico optimizado para gestión de citas Colsanitas 🏥
+                    Florida Medical Center - AI-powered appointment system 🏥
                 </div>
 
                 <div class="call-controls">
                     <button class="call-button" id="callButton">
-                        <i class="fas fa-phone"></i> Iniciar Llamada
+                        <i class="fas fa-phone"></i> Start Call
                     </button>
                     <button class="control-button" id="volumeButton">
-                        <i class="fas fa-volume-up"></i> Volumen: Alto
+                        <i class="fas fa-volume-up"></i> Volume: High
                     </button>
                     <button class="control-button" id="stopButton" style="display: none;">
-                        <i class="fas fa-stop"></i> Parar
+                        <i class="fas fa-stop"></i> Stop
                     </button>
                 </div>
 
                 <div class="stats-display" id="statsDisplay">
                     <div class="stat-item">
                         <div class="stat-value" id="responseTime">~800ms</div>
-                        <div class="stat-label">Tiempo IA</div>
+                        <div class="stat-label">AI Time</div>
                     </div>
                     <div class="stat-item">
                         <div class="stat-value" id="interactions">0</div>
-                        <div class="stat-label">Interacciones</div>
+                        <div class="stat-label">Interactions</div>
                     </div>
                     <div class="stat-item">
                         <div class="stat-value" id="micStatus">OFF</div>
-                        <div class="stat-label">Micrófono</div>
+                        <div class="stat-label">Microphone</div>
                     </div>
                     <div class="stat-item">
                         <div class="stat-value" id="carolinaStatus">Lista</div>
@@ -101,59 +101,60 @@
         <!-- PESTAÑA DE BÚSQUEDA DE PACIENTES -->
         <div id="search" class="tab-content">
             <div class="search-container">
-                <h3><i class="fas fa-search"></i> Búsqueda Inteligente de Pacientes</h3>
+                <h3><i class="fas fa-search"></i> Smart Patient Search</h3>
 
                 <div class="search-filters">
                     <div class="filter-group">
-                        <label class="filter-label">Tipo de Paciente:</label>
+                        <label class="filter-label">Patient Type:</label>
                         <select class="filter-select" id="patientTypeFilter">
-                            <option value="">Todos los tipos</option>
-                            <option value="pediatrico">Pediátrico</option>
-                            <option value="adulto">Adulto</option>
-                            <option value="adulto_mayor">Adulto Mayor</option>
-                            <option value="embarazada">Embarazada</option>
-                            <option value="cronica">Enfermedad Crónica</option>
+                            <option value="">All types</option>
+                            <option value="pediatrico">Pediatric</option>
+                            <option value="adulto">Adult</option>
+                            <option value="adulto_mayor">Senior</option>
+                            <option value="embarazada">Pregnant</option>
+                            <option value="cronica">Chronic Condition</option>
                         </select>
                     </div>
 
                     <div class="filter-group">
-                        <label class="filter-label">Especialidad:</label>
+                        <label class="filter-label">Specialty:</label>
                         <select class="filter-select" id="specialtyFilter">
-                            <option value="">Todas las especialidades</option>
-                            <option value="medicina_general">Medicina General</option>
-                            <option value="cardiologia">Cardiología</option>
-                            <option value="pediatria">Pediatría</option>
-                            <option value="ginecologia">Ginecología</option>
-                            <option value="dermatologia">Dermatología</option>
-                            <option value="ortopedia">Ortopedia</option>
+                            <option value="">All specialties</option>
+                            <option value="medicina_general">Primary Care</option>
+                            <option value="cardiologia">Cardiology</option>
+                            <option value="pediatria">Pediatrics</option>
+                            <option value="ginecologia">Gynecology</option>
+                            <option value="dermatologia">Dermatology</option>
+                            <option value="ortopedia">Orthopedics</option>
                         </select>
                     </div>
 
                     <div class="filter-group">
-                        <label class="filter-label">Ciudad:</label>
+                        <label class="filter-label">City:</label>
                         <select class="filter-select" id="cityFilter">
-                            <option value="">Toda Colombia</option>
-                            <option value="bogota">Bogotá</option>
-                            <option value="medellin">Medellín</option>
-                            <option value="cali">Cali</option>
-                            <option value="barranquilla">Barranquilla</option>
+                            <option value="">All Florida</option>
+                            <option value="miami">Miami</option>
+                            <option value="orlando">Orlando</option>
+                            <option value="tampa">Tampa</option>
+                            <option value="jacksonville">Jacksonville</option>
+                            <option value="fort_lauderdale">Fort Lauderdale</option>
                         </select>
                     </div>
 
                     <div class="filter-group">
-                        <label class="filter-label">Estado Cita:</label>
+                        <label class="filter-label">Appointment Status:</label>
                         <select class="filter-select" id="statusFilter">
-                            <option value="">Todos los estados</option>
-                            <option value="programada">Programada</option>
-                            <option value="confirmada">Confirmada</option>
-                            <option value="pendiente">Pendiente</option>
-                            <option value="cancelada">Cancelada</option>
+                            <option value="">All statuses</option>
+                            <option value="programada">Scheduled</option>
+                            <option value="confirmada">Confirmed</option>
+                            <option value="pendiente">Pending</option>
+                            <option value="cancelada">Canceled</option>
                         </select>
                     </div>
                 </div>
 
                 <button class="search-button" onclick="searchPatients()">
-                    <i class="fas fa-search"></i> Buscar Pacientes
+                    <i class="fas fa-search"></i> Search Patients
                 </button>
 
                 <div id="patientsList" class="patients-list">
@@ -168,48 +169,48 @@
                 <div class="crm-dashboard">
                     <div class="crm-card">
                         <div class="crm-title">
-                            <i class="fas fa-users"></i> Total Pacientes
+                            <i class="fas fa-users"></i> Total Patients
                         </div>
                         <div class="crm-value" id="totalPatients">0</div>
-                        <div style="color: #888888;">Registrados</div>
+                        <div style="color: #888888;">Registered</div>
                     </div>
 
                     <div class="crm-card">
                         <div class="crm-title">
-                            <i class="fas fa-phone"></i> Llamadas Hoy
+                            <i class="fas fa-phone"></i> Calls Today
                         </div>
                         <div class="crm-value" id="callsToday">0</div>
-                        <div style="color: #888888;">Realizadas</div>
+                        <div style="color: #888888;">Completed</div>
                     </div>
 
                     <div class="crm-card">
                         <div class="crm-title">
-                            <i class="fas fa-calendar-check"></i> Confirmaciones
+                            <i class="fas fa-calendar-check"></i> Confirmations
                         </div>
                         <div class="crm-value" id="confirmationRate">0%</div>
-                        <div style="color: #888888;">Exitosas</div>
+                        <div style="color: #888888;">Success Rate</div>
                     </div>
 
                     <div class="crm-card">
                         <div class="crm-title">
-                            <i class="fas fa-clock"></i> Citas Mes
+                            <i class="fas fa-clock"></i> Monthly Appts
                         </div>
                         <div class="crm-value" id="appointmentsMonth">0</div>
-                        <div style="color: #888888;">Gestionadas</div>
+                        <div style="color: #888888;">Managed</div>
                     </div>
                 </div>
 
                 <div style="margin-top: 30px;">
-                    <h3><i class="fas fa-database"></i> Base de Datos Pacientes</h3>
+                    <h3><i class="fas fa-database"></i> Patient Database</h3>
 
                     <div style="margin-bottom: 20px;">
-                        <input type="text" class="filter-input" placeholder="Buscar paciente..." id="searchPatient"
+                        <input type="text" class="filter-input" placeholder="Search patient..." id="searchPatient"
                             style="width: 300px; margin-right: 10px;">
                         <button class="search-button" onclick="filterPatients()">
-                            <i class="fas fa-filter"></i> Filtrar
+                            <i class="fas fa-filter"></i> Filter
                         </button>
                         <button class="search-button" onclick="exportData()" style="margin-left: 10px;">
-                            <i class="fas fa-download"></i> Exportar
+                            <i class="fas fa-download"></i> Export
                         </button>
                     </div>
 
@@ -223,25 +224,25 @@
         <!-- PESTAÑA DE INFORMES -->
         <div id="reports" class="tab-content">
             <div class="reports-container">
-                <h3><i class="fas fa-chart-bar"></i> Analytics e Informes Médicos</h3>
+                <h3><i class="fas fa-chart-bar"></i> Analytics & Medical Reports</h3>
 
                 <div style="margin-bottom: 20px;">
                     <button class="search-button" onclick="generateReport()">
-                        <i class="fas fa-plus"></i> Generar Informe
+                        <i class="fas fa-plus"></i> Generate Report
                     </button>
                     <button class="search-button" onclick="exportReport()" style="margin-left: 10px;">
-                        <i class="fas fa-file-alt"></i> Exportar
+                        <i class="fas fa-file-alt"></i> Export
                     </button>
                     <button class="search-button" onclick="clearAllReports()" style="margin-left: 10px;">
-                        <i class="fas fa-trash"></i> Limpiar Todo
+                        <i class="fas fa-trash"></i> Clear All
                     </button>
                 </div>
 
                 <div id="reportDisplay">
                     <div style="text-align: center; color: #888888; padding: 40px;">
                         <i class="fas fa-clipboard" style="font-size: 3rem; margin-bottom: 20px; color: #0066cc;"></i>
-                        <h3>No hay informes generados aún</h3>
-                        <p>Realiza una llamada y genera un informe automático médico</p>
+                        <h3>No reports generated yet</h3>
+                        <p>Make a call and generate an automatic medical report</p>
                     </div>
                 </div>
             </div>
