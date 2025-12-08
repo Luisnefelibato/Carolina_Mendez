@@ -370,26 +370,26 @@ class CarolinaFloridaMedicalSystem {
     getWelcomeMessage() {
         switch (this.currentServiceType) {
             case 'confirmacion':
-                return '🏥 Carolina ready to assist - Florida Medical Center';
+                return '🏥 Carolina lista para asistirle - Florida Medical Center';
             case 'prioritaria':
-                return '⚡ Priority Care activated - Carolina managing urgent appointments';
+                return '⚡ Atención Prioritaria activada - Carolina gestionando citas urgentes';
             case 'urgencia':
-                return '🚨 Emergency Protocol - Carolina coordinating immediate care';
+                return '🚨 Protocolo de Urgencias - Carolina coordinando atención inmediata';
             default:
-                return '🏥 Carolina ready to assist - Florida Medical Center';
+                return '🏥 Carolina lista para asistirle - Florida Medical Center';
         }
     }
 
     getInitialGreeting() {
         switch (this.currentServiceType) {
             case 'confirmacion':
-                return 'Good morning, this is Carolina from Florida Medical Center appointment confirmation department. How can I help you with your medical appointment today?';
+                return 'Buenos días, habla Carolina del departamento de confirmaciones de Florida Medical Center. ¿En qué puedo ayudarle con su cita médica?';
             case 'prioritaria':
-                return 'Good morning, this is Carolina from Florida Medical Center priority care department. I understand you need an urgent appointment. Please tell me what specialty you need and your situation so I can coordinate your care as soon as possible.';
+                return 'Buenos días, habla Carolina del departamento de atención prioritaria de Florida Medical Center. Entiendo que necesita una cita con urgencia. Por favor, cuénteme qué especialidad necesita y su situación para coordinarle la atención lo antes posible.';
             case 'urgencia':
-                return 'Good morning, this is Carolina from Florida Medical Center emergency protocol. I am here to coordinate your immediate medical care. Please provide your name, insurance ID, and your current location so I can direct you to the nearest facility.';
+                return 'Buenos días, habla Carolina, protocolo de urgencias de Florida Medical Center. Estoy aquí para coordinar su atención médica inmediata. Por favor, indíqueme su nombre, número de seguro médico y su ubicación actual para dirigirle al centro más cercano.';
             default:
-                return 'Good morning, this is Carolina from Florida Medical Center appointment confirmation department. How can I help you with your medical appointment today?';
+                return 'Buenos días, habla Carolina del departamento de confirmaciones de Florida Medical Center. ¿En qué puedo ayudarle con su cita médica?';
         }
     }
 
@@ -711,7 +711,7 @@ class CarolinaFloridaMedicalSystem {
 
             const currentText = this.finalTranscript + this.interimTranscript;
             if (currentText.trim()) {
-                this.transcript.textContent = "Florida Medical Center - AI-powered appointment system 🏥";
+                this.transcript.textContent = "Florida Medical Center - Sistema de gestión de citas médicas 🏥";
             }
 
             clearTimeout(this.silenceTimer);
@@ -1502,7 +1502,7 @@ Ejemplo de respuesta: "Entiendo su situación y no se preocupe, estamos aquí pa
 
         this.finalTranscript = '';
         this.interimTranscript = '';
-        this.transcript.textContent = "Florida Medical Center - AI-powered appointment system 🏥";
+        this.transcript.textContent = "Florida Medical Center - Sistema de gestión de citas médicas 🏥";
 
         console.log('⚠Llamada médica finalizada');
     }
