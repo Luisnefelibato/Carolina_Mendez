@@ -1715,7 +1715,7 @@ function displayPatientsList(patients, containerId) {
                 <div class="patient-card">
                     <div class="patient-name">${patient.name}</div>
                     <div class="patient-info">📋± ${patient.phone}</div>
-                    <div class="patient-info">📋 ${patient.insurance ID}</div>
+                    <div class="patient-info">📋 ${patient.insuranceID}</div>
                     <div class="patient-info">📋¥ ${patient.specialty}</div>
                     <div class="patient-info">📋 ${patient.city}</div>
                     <div class="patient-info">📋 Ãltima cita: ${patient.lastAppointment}</div>
@@ -1740,7 +1740,7 @@ function filterPatients() {
     const filteredPatients = carolinaSistema.patientsDatabase.filter(patient =>
         patient.name.toLowerCase().includes(searchTerm) ||
         patient.phone.includes(searchTerm) ||
-        patient.insurance ID.includes(searchTerm)
+        patient.insuranceID.includes(searchTerm)
     );
 
     displayPatientsList(filteredPatients, 'crmPatientsList');
