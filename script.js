@@ -381,16 +381,9 @@ class CarolinaFloridaMedicalSystem {
     }
 
     getInitialGreeting() {
-        switch (this.currentServiceType) {
-            case 'confirmacion':
-                return 'Buenos días, habla Carolina del departamento de confirmaciones de Florida Medical Center. ¿En qué puedo ayudarle con su cita médica?';
-            case 'prioritaria':
-                return 'Buenos días, habla Carolina del departamento de atención prioritaria de Florida Medical Center. Entiendo que necesita una cita con urgencia. Por favor, cuénteme qué especialidad necesita y su situación para coordinarle la atención lo antes posible.';
-            case 'urgencia':
-                return 'Buenos días, habla Carolina, protocolo de urgencias de Florida Medical Center. Estoy aquí para coordinar su atención médica inmediata. Por favor, indíqueme su nombre, número de seguro médico y su ubicación actual para dirigirle al centro más cercano.';
-            default:
-                return 'Buenos días, habla Carolina del departamento de confirmaciones de Florida Medical Center. ¿En qué puedo ayudarle con su cita médica?';
-        }
+        // 🚨 NO DAR SALUDO AUTOMÁTICO - Carolina solo debe responder cuando el usuario hable primero
+        // El saludo completo se da en el prompt cuando el usuario hace su primer contacto
+        return ''; // Retornar vacío para que NO hable automáticamente al cargar
     }
 
     // === CONVERSIÃN PERFECTA DE NÃMEROS A ESPAÃOL ===
@@ -1636,15 +1629,21 @@ Ejemplo de respuesta: "Entiendo su situación y no se preocupe, estamos aquí pa
         this.updateCallStatus('📋 Llamada conectada - Departamento Médico', 'connected');
         this.updateCarolinaStatus('Conectada');
 
-        // Carolina saluda según el tipo de servicio
+        // 🚨 NO DAR SALUDO AUTOMÁTICO - Carolina solo responde cuando el usuario habla primero
+        // El micrófono se activa inmediatamente para que el usuario pueda hablar
         const greeting = this.getInitialGreeting();
-        this.addToConversation(greeting, 'carolina');
-
-        // Hablar el saludo
-        await this.speak(greeting);
-
-        // El micrófono se activará automáticamente después de que Carolina termine de hablar
-        // en la función onSpeechEnded()
+        
+        if (greeting && greeting.trim() !== '') {
+            // Solo si hay un greeting (para compatibilidad futura)
+            this.addToConversation(greeting, 'carolina');
+            await this.speak(greeting);
+        } else {
+            // Activar micrófono INMEDIATAMENTE sin saludo automático
+            console.log('📋 Sin saludo automático - Esperando que el usuario hable primero');
+            // Pequeño delay para asegurar que todo esté listo
+            await new Promise(resolve => setTimeout(resolve, 500));
+            this.activateMicrophone();
+        }
 
         console.log('⚠Llamada médica iniciada');
     }
