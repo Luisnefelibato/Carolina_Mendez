@@ -381,9 +381,10 @@ class CarolinaFloridaMedicalSystem {
     }
 
     getInitialGreeting() {
-        // 🚨 NO DAR SALUDO AUTOMÁTICO - Carolina solo debe responder cuando el usuario hable primero
-        // El saludo completo se da en el prompt cuando el usuario hace su primer contacto
-        return ''; // Retornar vacío para que NO hable automáticamente al cargar
+        // 🚨 ÚNICO SALUDO INICIAL - Carolina habla primero con este mensaje
+        // Este es el ÚNICO saludo que se da al iniciar la llamada
+        // NO debe repetirse después
+        return '¡Hola! Soy Carolina Méndez de Florida Medical Center. Para poder ayudarle, por favor dígame su nombre completo y su número de ID o seguro médico.';
     }
 
     // === CONVERSIÃN PERFECTA DE NÃMEROS A ESPAÃOL ===
@@ -1119,10 +1120,17 @@ IMPORTANTE: Cuando confirmes la cita, usa EXACTAMENTE estos datos. NO uses place
             }
         }
 
+        // 🚨 Instrucción adicional para evitar repetir la presentación
+        let additionalInstruction = '';
+        if (this.conversationHistory.length > 0) {
+            // Si ya hay historial, Carolina YA se presentó
+            additionalInstruction = `\n\n🚨 IMPORTANTE: Ya te presentaste al inicio de la llamada. NO vuelvas a decir "Soy Carolina Méndez de Florida Medical Center" ni pidas nombre/ID si ya lo tienes. Continúa la conversación naturalmente desde donde se quedó.\n\n`;
+        }
+
         const requestBody = {
             contents: [{
                 parts: [{
-                    text: `${systemPrompt}${appointmentContext}
+                    text: `${systemPrompt}${appointmentContext}${additionalInstruction}
 
 ${conversationContext}Paciente: ${userMessage}
 
@@ -1629,21 +1637,16 @@ Ejemplo de respuesta: "Entiendo su situación y no se preocupe, estamos aquí pa
         this.updateCallStatus('📋 Llamada conectada - Departamento Médico', 'connected');
         this.updateCarolinaStatus('Conectada');
 
-        // 🚨 NO DAR SALUDO AUTOMÁTICO - Carolina solo responde cuando el usuario habla primero
-        // El micrófono se activa inmediatamente para que el usuario pueda hablar
+        // 🚨 Carolina saluda PRIMERO con el mensaje inicial
+        // Este es el ÚNICO saludo automático
         const greeting = this.getInitialGreeting();
-        
-        if (greeting && greeting.trim() !== '') {
-            // Solo si hay un greeting (para compatibilidad futura)
-            this.addToConversation(greeting, 'carolina');
-            await this.speak(greeting);
-        } else {
-            // Activar micrófono INMEDIATAMENTE sin saludo automático
-            console.log('📋 Sin saludo automático - Esperando que el usuario hable primero');
-            // Pequeño delay para asegurar que todo esté listo
-            await new Promise(resolve => setTimeout(resolve, 500));
-            this.activateMicrophone();
-        }
+        this.addToConversation(greeting, 'carolina');
+
+        // Hablar el saludo inicial
+        await this.speak(greeting);
+
+        // El micrófono se activará automáticamente después de que Carolina termine de hablar
+        // en la función onSpeechEnded()
 
         console.log('⚠Llamada médica iniciada');
     }
