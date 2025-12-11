@@ -10,7 +10,7 @@
     // En desarrollo local, se pueden hardcodear temporalmente
     
     // Configuración ofuscada - API key dividida para dificultar scraping
-    const parts = ['AIzaSyC', 'G-Xa_J6', 'cRf6xzF', 'zIDOiz1', '6-Hlx-7', '01OU'];
+    const parts = ['AIzaSyA', 't8VsteU', '9mTRFxn', '-84iPOJ', 'lDiMisK', 'GQtg'];
     const apiKey = parts.join('');
     
     const config = {
